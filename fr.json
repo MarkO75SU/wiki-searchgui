@@ -1,0 +1,115 @@
+{
+    "page-title": "WikiGUI - Aide à la recherche Wikipédia",
+    "app-title": "WikiGUI",
+    "nav-home": "Accueil",
+    "nav-help": "Aide à la recherche",
+    "nav-about": "À propos",
+    "main-heading": "Aide à la recherche Wikipédia",
+    "official-doc-link": "Documentation officielle de la recherche Wikipédia",
+    "general-params-description": "Apprenez à utiliser efficacement les paramètres de recherche. Par exemple, utilisez \"ET\" ou \"OU\" entre les termes, ou \"-terme\" pour exclure.",
+    
+    "heading-main-query": "Requête de recherche principale :",
+    "label-search-query": "Tous ces mots :",
+    "search-query-placeholder": "1. FC Köln",
+    "info-all-words-text": "Tous les mots saisis doivent apparaître dans les résultats (ET implicite).",
+
+    "label-exact-phrase": "Phrase exacte :",
+    "exact-phrase-placeholder": "ex. \"RheinEnergieStadion\"",
+    "info-exact-phrase-text": "Recherche cette séquence exacte de mots.",
+
+    "label-without-words": "Sans ces mots :",
+    "without-words-placeholder": "Düsseldorf",
+    "info-without-words-text": "Exclut les pages contenant ces mots.",
+
+    "label-any-words": "Au moins un de ces mots (OU) :",
+    "any-words-placeholder": "Football OU Soccer",
+    "info-any-words-text": "Recherche les pages contenant au moins un des mots spécifiés.",
+
+    "label-target-wiki-lang": "Langue cible du Wiki :",
+    "info-target-lang-text": "Sélectionne la langue du projet Wikipédia dans lequel effectuer la recherche.",
+
+    "heading-scope-location": "Portée & Emplacement :",
+    "label-intitle": "Rechercher dans le titre (Requête de recherche principale)",
+    "info-intitle-text": "Recherche la requête de recherche principale uniquement dans le titre de l'article.",
+
+    "label-intext": "Rechercher dans le texte",
+    "info-intext-text": "Recherche les termes uniquement dans le texte principal de l'article.",
+
+    "label-incategory": "Dans la catégorie :",
+    "incategory-placeholder": "Clubs de football",
+    "info-incategory-text": "Recherche les articles dans une ou plusieurs catégories. Séparez les catégories par une virgule.",
+
+    "label-deepcat": "Catégorie profonde :",
+    "deepcat-placeholder": "Sport",
+    "info-deepcat-text": "Recherche les articles dans la catégorie spécifiée et ses sous-catégories.",
+
+    "label-prefix": "Préfixe du titre :",
+    "prefix-placeholder": "FC ",
+    "info-prefix-text": "Recherche les pages dont le titre commence par le préfixe spécifié.",
+
+    "label-subpageof": "Sous-page de :",
+    "subpageof-placeholder": "Page principale",
+    "info-subpageof-text": "Recherche les sous-pages de la page spécifiée.",
+
+    "label-linkfrom": "Lié depuis :",
+    "linkfrom-placeholder": "Miroslav Klose",
+    "info-linkfrom-text": "Trouve les pages qui contiennent un lien vers la page spécifiée.",
+
+    "label-filetype": "Type de fichier :",
+    "filetype-placeholder": "pdf, jpg, ogg",
+    "info-filetype-text": "Filtre les fichiers multimédias par leur type (ex. pdf, jpg, svg).",
+
+    "label-filesize": "Taille du fichier (octets) :",
+    "filesize-min-placeholder": "Min",
+    "filesize-max-placeholder": "Max",
+    "info-filesize-text": "Filtre les fichiers multimédias par leur taille. Utilisez Min et Max pour une plage.",
+
+    "label-namespaces": "Espaces de noms :",
+    "label-ns-main": "Article",
+    "info-ns-main-text": "Recherche dans l'espace de noms principal (articles).",
+    "label-ns-file": "Fichier",
+    "info-ns-file-text": "Recherche dans l'espace de noms Fichier.",
+    "label-ns-category": "Catégorie",
+    "info-ns-category-text": "Recherche dans l'espace de noms Catégorie.",
+    "label-ns-help": "Aide",
+    "info-ns-help-text": "Recherche dans l'espace de noms Aide.",
+    "label-ns-user": "Utilisateur",
+    "info-ns-user-text": "Recherche dans l'espace de noms Utilisateur.",
+    "label-ns-template": "Modèle",
+    "info-ns-template-text": "Recherche dans l'espace de noms Modèle.",
+
+    "label-fuzzy": "Recherche floue (tilde ~)",
+    "info-fuzzy-text": "Permet des variations orthographiques mineures (ex. 'maison~' trouve 'maisons').",
+
+    "presets-heading": "Préréglages de recherche :",
+    "preset-easy": "Facile",
+    "preset-middle": "Moyen",
+    "preset-complex": "Complexe",
+    "generate-search-string-button": "Générer la chaîne de recherche et l'aperçu",
+    
+    "generated-string-heading": "Chaîne de recherche générée :",
+    "generated-string-placeholder": "La chaîne générée apparaîtra ici.",
+    "search-results-heading": "Résultats de recherche simulés (10 premiers) :",
+    "no-results-found": "Aucun résultat simulé trouvé.",
+    
+    "footer-text": "© 2025 WikiGUI. Tous droits réservés.",
+
+    "lang-de-option": "Allemand (de)",
+    "lang-en-option": "Anglais (en)",
+    "lang-fr-option": "Français (fr)",
+    "lang-es-option": "Espagnol (es)",
+    "lang-zh-option": "Chinois (zh)",
+    "lang-hi-option": "Hindi (hi)",
+    "lang-ar-option": "Arabe (ar)",
+    "lang-ru-option": "Russe (ru)",
+    "lang-pt-option": "Portugais (pt)",
+
+    "label-category-dropdown": "Catégorie :",
+    "placeholder-category-dropdown": "Sélectionner une catégorie",
+    "info-category-dropdown-text": "Sélectionnez une catégorie Wikipédia pour affiner votre recherche.",
+    "category-Science": "Science",
+    "category-History": "Histoire",
+    "category-Art": "Art",
+    "category-Technology": "Technologie",
+    "category-Geography": "Géographie"
+}
