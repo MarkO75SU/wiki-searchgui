@@ -1,19 +1,19 @@
-This document provides an example of an open-license agreement inspired by permissive open-source licenses. It is not a legally binding document and must be reviewed by a legal professional.
+This document provides an example of an open-source license agreement. It is not a legally binding document and must be reviewed by a legal professional.
 
 ---
 
-**[Software Name] - Example Open License Agreement**
+**[Software Name] - Example Open Source License**
 
 **Version:** 1.0
 **Date:** October 26, 2023
 
-This Open License Agreement (the "License") governs the use of the software [Software Name] (the "Software"), made available by [Your Name/Organization Name]. By using the Software, you agree to the terms of this License.
+This Open Source License Agreement (the "License") governs the use of the software [Software Name] (the "Software"), made available by [Your Name/Organization Name] at the following GitHub repository: https://github.com/MarkO75SU/wiki-searchhelp. By using the Software, you agree to the terms of this License.
 
 **1. Grant of Rights**
 [Your Name/Organization Name] grants you a worldwide, non-exclusive, royalty-free, revocable license to:
     a. Use, reproduce, and modify the Software.
     b. Distribute copies of the Software or modified versions thereof.
-    c. Use the Software for any purpose, including commercial use.
+    c. Use the Software for any purpose, including personal, educational, and non-commercial research purposes. For commercial use, please contact [Your Name/Organization Name] for potential licensing terms.
 
 **2. Conditions**
 You must comply with the following conditions:
@@ -28,4 +28,4 @@ This License terminates automatically if you breach any of its terms.
 This License shall be governed by and construed in accordance with the laws of Germany.
 
 ---
-**Disclaimer:** This is a simplified example. For actual use, consult with a legal professional and consider adopting established open-source licenses (e.g., MIT, Apache 2.0, GPL) which are well-vetted and understood.
+**Disclaimer:** This is a simplified example inspired by permissive open-source licenses. For actual use, consult with a legal professional and consider adopting well-established open-source licenses (e.g., MIT, Apache 2.0, GPL) which are widely recognized and understood.
