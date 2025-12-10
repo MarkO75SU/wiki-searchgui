@@ -163,9 +163,10 @@ function addEnterKeySubmitListener() {
         if (inputElement) {
             inputElement.addEventListener('keydown', (event) => {
                 if (event.key === 'Enter') {
-                    // Prevent default form submission behavior if Enter is pressed
+                    // Prevent default browser behavior for Enter key in forms
                     event.preventDefault();
                     // Manually trigger the form submission to initiate search
+                    console.log(`Enter key pressed on ${id}. Triggering form submit.`);
                     searchForm.submit();
                 }
             });
@@ -182,12 +183,15 @@ const searchForm = document.getElementById('search-form');
 if (searchForm) {
     searchForm.addEventListener('submit', async (event) => {
         event.preventDefault(); // Prevent default form submission
-        console.log("Form submitted. Generating search query...");
+        console.log("Form submit event captured. Generating search query...");
 
         const generatedQuery = generateSearchString();
+        console.log("generateSearchString returned:", generatedQuery); // Debug log for generated query
+
         const targetLangInput = document.getElementById('target-wiki-lang');
         // Safely get targetLang, default to 'en' if element not found or value is empty
         const targetLang = targetLangInput ? targetLangInput.value || 'en' : 'en';
+        console.log("Target Wiki Language selected:", targetLang);
 
         const resultsContainer = document.getElementById('simulated-search-results');
         
@@ -196,7 +200,7 @@ if (searchForm) {
         }
 
         if (generatedQuery && targetLang) {
-            console.log(`Searching Wikipedia with query: "${generatedQuery}" in language: "${targetLang}"`);
+            console.log(`Initiating Wikipedia search with query: "${generatedQuery}" in language: "${targetLang}"`);
             const searchResults = await performWikipediaSearch(generatedQuery, targetLang);
             if (resultsContainer) {
                 resultsContainer.innerHTML = ''; // Clear loading message
@@ -303,6 +307,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await fetchTranslations(currentLang);
     applyTranslations();
     generateSearchString(); // Generate initial string on load
+    console.log("generateSearchString called from DOMContentLoaded."); // Debug log
     addEnterKeySubmitListener(); // Add the new listener for Enter key
-    console.log("Application initialized.");
+    console.log("Enter key listener attached.");
 });
