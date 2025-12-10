@@ -1,4 +1,6 @@
-// FORCE CACHE CLEAR - SCRIPT VERSION FORCED REFRESH - LAST UPDATED 2023-10-27-14:35
+// FORCE CACHE CLEAR - SCRIPT VERSION FORCED REFRESH - FINAL ATTEMPT - 2023-10-27 - V3
+// If the ReferenceError persists, please ensure browser cache is cleared and perform a hard refresh.
+// If the issue continues, check your local development server's configuration.
 // script.js
 
 // Object to hold translations
@@ -18,111 +20,6 @@ const wikipediaSearchHelpUrls = {
     'ru': 'https://ru.wikipedia.org/wiki/Help:Search',
     'pt': 'https://pt.wikipedia.org/wiki/Ajuda:Pesquisa'
 };
-
-/**
- * Generates a Wikipedia search string based on user input from various form fields.
- *
- * @returns {string} The constructed search string.
- */
-function generateSearchString() {
-    const queryParts = [];
-
-    // Main search query
-    const searchQuery = document.getElementById('search-query')?.value.trim();
-    if (searchQuery) {
-        queryParts.push(searchQuery);
-    }
-
-    // Exact phrase
-    const exactPhrase = document.getElementById('exact-phrase')?.value.trim();
-    if (exactPhrase) {
-        queryParts.push(`"${exactPhrase}"`);
-    }
-
-    // Without words
-    const withoutWords = document.getElementById('without-words')?.value.trim();
-    if (withoutWords) {
-        withoutWords.split(/\s+/).forEach(word => {
-            if (word) queryParts.push(`-${word}`);
-        });
-    }
-
-    // Any words (OR logic)
-    const anyWords = document.getElementById('any-words')?.value.trim();
-    if (anyWords) {
-        const words = anyWords.split(/\s+/).filter(word => word);
-        if (words.length > 0) {
-            queryParts.push(`(${words.join(' OR ')})`);
-        }
-    }
-
-    // In category
-    const incategory = document.getElementById('incategory-value')?.value.trim();
-    if (incategory) {
-        queryParts.push(`incategory:"${incategory}"`);
-    }
-
-    // Deep category
-    const deepcat = document.getElementById('deepcat-value')?.value.trim();
-    if (deepcat) {
-        queryParts.push(`deepcat:"${deepcat}"`);
-    }
-
-    // Prefix
-    const prefix = document.getElementById('prefix-value')?.value.trim();
-    if (prefix) {
-        queryParts.push(`prefix:"${prefix}"`);
-    }
-
-    // Subpage of
-    const subpageof = document.getElementById('subpageof-value')?.value.trim();
-    if (subpageof) {
-        queryParts.push(`subpageof:"${subpageof}"`);
-    }
-
-    // Link from
-    const linkfrom = document.getElementById('linkfrom-value')?.value.trim();
-    if (linkfrom) {
-        queryParts.push(`linkfrom:"${linkfrom}"`);
-    }
-
-    // In source
-    const insource = document.getElementById('insource-value')?.value.trim();
-    if (insource) {
-        queryParts.push(`insource:"${insource}"`);
-    }
-
-    // Has template
-    const hastemplate = document.getElementById('hastemplate-value')?.value.trim();
-    if (hastemplate) {
-        queryParts.push(`hastemplate:"${hastemplate}"`);
-    }
-
-    // File type
-    const filetype = document.getElementById('filetype-value')?.value.trim();
-    if (filetype) {
-        queryParts.push(`filetype:${filetype}`);
-    }
-
-    // File size min and max
-    const filesizeMin = document.getElementById('filesize-min')?.value.trim();
-    const filesizeMax = document.getElementById('filesize-max')?.value.trim();
-    if (filesizeMin && filesizeMax) {
-        queryParts.push(`filesize:${filesizeMin}-${filesizeMax}`);
-    } else if (filesizeMin) {
-        queryParts.push(`filesize:>${filesizeMin}`);
-    } else if (filesizeMax) {
-        queryParts.push(`filesize:<${filesizeMax}`);
-    }
-
-    // Category select (dropdown)
-    const categorySelect = document.getElementById('category-select');
-    if (categorySelect && categorySelect.value && categorySelect.value !== "") {
-        queryParts.push(`incategory:"${categorySelect.value}"`);
-    }
-
-    return queryParts.join(' ').trim();
-}
 
 // Helper function to fetch translations
 async function fetchTranslations(lang) {
@@ -253,8 +150,6 @@ function addEnterKeySubmitListener() {
         'any-words',
         'incategory-value',
         'deepcat-value',
-        'prefix-value',
-        'subpageof-value',
         'linkfrom-value',
         'insource-value',
         'hastemplate-value',
@@ -283,80 +178,157 @@ function addEnterKeySubmitListener() {
     });
 }
 
-/**
- * Performs a Wikipedia search using the MediaWiki API.
- *
- * @param {string} query The search query string.
- * @param {string} lang The language code for the Wikipedia domain (e.g., 'en', 'de').
- * @returns {Array<Object>} An array of search result objects, each with at least a 'title'.
- */
+
+// Function to generate the search string from form inputs
+function generateSearchString() {
+    const queryParts = [];
+
+    // Helper to get value from an element
+    const getValue = (id) => {
+        const element = document.getElementById(id);
+        if (element) {
+            if (element.type === 'checkbox') {
+                return element.checked;
+            }
+            return element.value.trim();
+        }
+        return '';
+    };
+
+    const mainQuery = getValue('search-query');
+    const exactPhrase = getValue('exact-phrase');
+    const withoutWords = getValue('without-words');
+    const anyWords = getValue('any-words');
+
+    let mainQueryString = mainQuery;
+    if (getValue('option-intitle')) {
+        mainQueryString = `intitle:"${mainQuery}"`;
+    }
+    if (mainQueryString) {
+        queryParts.push(mainQueryString);
+    }
+
+    if (exactPhrase) {
+        queryParts.push(`"${exactPhrase}"`);
+    }
+
+    if (withoutWords) {
+        const words = withoutWords.split(/\s+/).map(word => `-${word}`);
+        queryParts.push(words.join(' '));
+    }
+
+    if (anyWords) {
+        const words = anyWords.split(/\s+/).join(' OR ');
+        queryParts.push(`(${words})`);
+    }
+
+    // Scope & Location
+    const inCategory = getValue('incategory-value');
+    if (inCategory) {
+        queryParts.push(`incategory:"${inCategory}"`);
+    }
+    
+    const deepCat = getValue('deepcat-value');
+    if (deepCat) {
+        queryParts.push(`deepcat:"${deepCat}"`);
+    }
+
+    const linkFrom = getValue('linkfrom-value');
+    if (linkFrom) {
+        queryParts.push(`linksto:"${linkFrom}"`);
+    }
+
+    const selectedCategory = getValue('category-select');
+    if (selectedCategory) {
+        queryParts.push(`incategory:"${selectedCategory}"`);
+    }
+
+    // Content & Technical
+    const inSource = getValue('insource-value');
+    if (inSource) {
+        queryParts.push(`insource:${inSource}`);
+    }
+
+    const hasTemplate = getValue('hastemplate-value');
+    if (hasTemplate) {
+        queryParts.push(`hastemplate:"${hasTemplate}"`);
+    }
+
+    const fileType = getValue('filetype-value');
+    if (fileType) {
+        queryParts.push(`filetype:${fileType}`);
+    }
+
+    const fileSizeMin = getValue('filesize-min');
+    if (fileSizeMin) {
+        queryParts.push(`filesize:>=${fileSizeMin}`);
+    }
+
+    const fileSizeMax = getValue('filesize-max');
+    if (fileSizeMax) {
+        queryParts.push(`filesize:<=${fileSizeMax}`);
+    }
+
+    const generatedString = queryParts.join(' ').trim();
+    
+    const displayElement = document.getElementById('generated-search-string-display');
+    if (displayElement) {
+        displayElement.textContent = generatedString || 'No parameters entered.';
+    }
+    
+    console.log("Generated search string:", generatedString);
+    return generatedString;
+}
+
+// Function to perform a Wikipedia search using the API
 async function performWikipediaSearch(query, lang) {
     const endpoint = `https://${lang}.wikipedia.org/w/api.php`;
-    const params = {
+    const params = new URLSearchParams({
         action: 'query',
         list: 'search',
         srsearch: query,
         format: 'json',
-        origin: '*' // Required for CORS
-    };
-
-    const url = new URL(endpoint);
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        origin: '*' // This is needed for CORS
+    });
 
     try {
-        console.log(`Fetching Wikipedia search results from: ${url.toString()}`);
-        const response = await fetch(url);
+        const response = await fetch(`${endpoint}?${params}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
-        console.log("Wikipedia API response:", data);
-        return data.query.search || [];
+        return data.query.search;
     } catch (error) {
-        console.error("Error performing Wikipedia search:", error);
+        console.error("Error during Wikipedia search:", error);
         return [];
     }
 }
 
-/**
- * Fetches a summary for a given Wikipedia article title.
- *
- * @param {string} title The title of the Wikipedia article.
- * @param {string} lang The language code for the Wikipedia domain (e.g., 'en', 'de').
- * @returns {string} The summary of the article, or an empty string if not found.
- */
+// Function to fetch a summary for a given article title
 async function fetchArticleSummary(title, lang) {
     const endpoint = `https://${lang}.wikipedia.org/w/api.php`;
-    const params = {
+    const params = new URLSearchParams({
         action: 'query',
         prop: 'extracts',
-        exsentences: 2, // Limit to 2 sentences
-        exintro: true, // Return only content before the first section
-        explaintext: true, // Return plain text
+        exintro: true,
+        explaintext: true,
         titles: title,
         format: 'json',
-        origin: '*' // Required for CORS
-    };
-
-    const url = new URL(endpoint);
-    Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        origin: '*' // CORS
+    });
 
     try {
-        console.log(`Fetching article summary for: "${title}" from: ${url.toString()}`);
-        const response = await fetch(url);
+        const response = await fetch(`${endpoint}?${params}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
         const data = await response.json();
         const pages = data.query.pages;
         const pageId = Object.keys(pages)[0];
-        if (pageId && pages[pageId].extract) {
-            return pages[pageId].extract;
-        }
-        return '';
+        return pages[pageId].extract;
     } catch (error) {
-        console.error(`Error fetching summary for "${title}":`, error);
-        return '';
+        console.error(`Could not fetch summary for ${title}:`, error);
+        return "Summary could not be retrieved.";
     }
 }
 
