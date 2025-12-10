@@ -47,24 +47,7 @@ header h1 {
     font-size: 1.8rem;
 }
 
-header nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    gap: 20px;
-}
-
-header nav ul li a {
-    color: var(--text-light);
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
-}
-
-header nav ul li a:hover {
-    color: var(--primary-color);
-}
+/* Removed Navigation from header */
 
 .language-selector {
     display: flex;
@@ -347,12 +330,36 @@ footer {
     margin-top: 40px;
 }
 
-footer p {
+/* Styles for footer links */
+footer nav ul {
+    list-style: none; /* Remove bullet points */
+    padding: 0;
     margin: 0;
-    font-size: 0.9rem;
+    display: flex; /* Arrange items horizontally */
+    justify-content: center; /* Center the links */
+    gap: 20px; /* Add space between links */
+    margin-bottom: 10px; /* Space between nav and copyright */
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
 }
 
-/* Responsive Design */
+footer nav li {
+    display: inline-block; /* Fallback/alternative for older browsers or specific layouts */
+    margin: 0 10px; /* Horizontal margin for spacing */
+}
+
+footer nav a {
+    color: var(--text-light); /* Set text color to white */
+    text-decoration: none; /* Remove underline if desired */
+    font-weight: bold; /* Make links bold */
+    transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+footer nav a:hover {
+    color: var(--primary-color); /* Change color on hover */
+    text-decoration: underline; /* Add underline on hover for better UX */
+}
+
+/* Adjustments for smaller screens if needed */
 @media (max-width: 768px) {
     header .container {
         flex-direction: column;
@@ -393,6 +400,19 @@ footer p {
         transform: none;
         width: 100%;
         white-space: normal;
+    }
+
+    /* Responsive adjustments for footer links */
+    footer nav ul {
+        flex-direction: column; /* Stack links vertically on smaller screens */
+        align-items: center; /* Center stacked links */
+        gap: 5px; /* Reduce gap when stacked */
+    }
+    footer nav li {
+        margin: 5px 0; /* Vertical margin when stacked */
+    }
+    footer nav a {
+        color: var(--text-light); /* Ensure color remains white */
     }
 }
 
