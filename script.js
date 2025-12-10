@@ -239,68 +239,6 @@ if (searchForm) {
     console.error("Element with ID 'search-form' not found. Submit listener not attached.");
 }
 
-// Preset buttons functionality
-// Using optional chaining for safety
-document.getElementById('preset-easy')?.addEventListener('click', () => {
-    document.getElementById('search-form')?.reset();
-    // Toggle checkboxes off and on to ensure they are unchecked
-    document.getElementById('option-intitle')?.checked && document.getElementById('option-intitle').click();
-    document.getElementById('option-intext')?.checked && document.getElementById('option-intext').click();
-    document.querySelectorAll('#namespaces-options input[type="checkbox"]').forEach(checkbox => {
-        if (checkbox.checked) checkbox.click(); // Uncheck all namespaces
-    });
-
-    // Set easy preset: only main query
-    const searchInput = document.getElementById('search-query');
-    if (searchInput) searchInput.value = "Example Search";
-    generateSearchString();
-});
-
-document.getElementById('preset-middle')?.addEventListener('click', () => {
-    document.getElementById('search-form')?.reset();
-    // Toggle checkboxes off and on to ensure they are unchecked
-    document.getElementById('option-intitle')?.checked && document.getElementById('option-intitle').click();
-    document.getElementById('option-intext')?.checked && document.getElementById('option-intext').click();
-    document.querySelectorAll('#namespaces-options input[type="checkbox"]').forEach(checkbox => {
-        if (checkbox.checked) checkbox.click(); // Uncheck all namespaces
-    });
-
-    // Set middle preset: main query, exact phrase, maybe one namespace
-    const searchInput = document.getElementById('search-query');
-    if (searchInput) searchInput.value = "Complex Query";
-    const exactPhraseInput = document.getElementById('exact-phrase');
-    if (exactPhraseInput) exactPhraseInput.value = "exact words";
-    document.getElementById('ns-main')?.click(); // Check 'Article' namespace
-    generateSearchString();
-});
-
-document.getElementById('preset-complex')?.addEventListener('click', () => {
-    document.getElementById('search-form')?.reset();
-    // Toggle checkboxes off and on to ensure they are unchecked
-    document.getElementById('option-intitle')?.checked && document.getElementById('option-intitle').click();
-    document.getElementById('option-intext')?.checked && document.getElementById('option-intext').click();
-    document.querySelectorAll('#namespaces-options input[type="checkbox"]').forEach(checkbox => {
-        if (checkbox.checked) checkbox.click(); // Uncheck all namespaces
-    });
-
-    // Set complex preset: multiple fields filled
-    const searchInput = document.getElementById('search-query');
-    if (searchInput) searchInput.value = "Advanced Topic";
-    const exactPhraseInput = document.getElementById('exact-phrase');
-    if (exactPhraseInput) exactPhraseInput.value = "specific phrase";
-    const withoutWordsInput = document.getElementById('without-words');
-    if (withoutWordsInput) withoutWordsInput.value = "unwanted";
-    const anyWordsInput = document.getElementById('any-words');
-    if (anyWordsInput) anyWordsInput.value = "optionA OR optionB";
-    const incategoryValueInput = document.getElementById('incategory-value');
-    if (incategoryValueInput) incategoryValueInput.value = "Science, Technology";
-    document.getElementById('ns-main')?.click(); // Check 'Article' namespace
-    document.getElementById('ns-file')?.click(); // Check 'File' namespace
-    document.getElementById('option-fuzzy')?.click(); // Check fuzzy search
-    generateSearchString();
-});
-
-
 // Initial load
 document.addEventListener('DOMContentLoaded', async () => {
     console.log("DOM fully loaded. Initializing application...");
