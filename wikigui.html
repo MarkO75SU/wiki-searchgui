@@ -10,13 +10,7 @@
     <header>
         <div class="container">
             <h1 id="app-title">WikiGUI</h1>
-            <nav>
-                <ul>
-                    <li><a href="#" id="nav-home">Home</a></li>
-                    <li><a href="#" id="nav-help">Search Help</a></li>
-                    <li><a href="#" id="nav-about">About</a></li>
-                </ul>
-            </nav>
+            <!-- Removed Navigation: Home, Search Help, About -->
             <div class="language-selector">
                 <button id="lang-de" class="lang-button" data-lang="de">Deutsch</button>
                 <button id="lang-en" class="lang-button" data-lang="en">English</button>
@@ -254,7 +248,7 @@
                 <h3 id="generated-string-heading">Generated Search String:</h3>
                 <p id="generated-search-string-display">Generated string will appear here.</p>
 
-                <h3 id="search-results-heading">Suchergebnisse (erste 10):</h3>
+                <h3 id="search-results-heading">Simulated Search Results (First 10):</h3>
                 <ul id="simulated-search-results">
                     <!-- Simulated results will be inserted here -->
                     <li><div class="loading-indicator" style="display: none;">Loading results...</div></li>
@@ -265,6 +259,14 @@
 
     <footer>
         <div class="container">
+            <nav>
+                <ul>
+                    <li><a id="link-license-agreement" href="LICENSE_AGREEMENT.txt">License Agreement</a></li>
+                    <li><a id="link-terms-of-use" href="TERMS_OF_USE.txt">Terms of Use</a></li>
+                    <li><a id="link-non-commercial-use" href="NON_COMMERCIAL_USE.txt">Non-Commercial Use</a></li>
+                    <li><a id="link-faq" href="FAQ.txt">FAQ</a></li>
+                </ul>
+            </nav>
             <p id="footer-text">&copy; 2025 WikiGUI. All rights reserved.</p>
         </div>
     </footer>

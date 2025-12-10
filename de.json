@@ -43,17 +43,6 @@
     "deepcat-placeholder": "Sport",
     "info-deepcat-text": "Sucht Artikel in der angegebenen Kategorie und deren Unterkategorien.",
 
-    "heading-content-technical": "Inhalt & Technik:",
-    "heading-behavioral": "Suchverhalten:",
-
-    "label-insource": "Im Quelltext (Wikitext):",
-    "insource-placeholder": "insource:/regex/ oder insource:\"text\"",
-    "info-insource-text": "Sucht nach Begriffen oder regulären Ausdrücken direkt im Wikitext.",
-
-    "label-hastemplate": "Verwendet Vorlage:",
-    "hastemplate-placeholder": "Infobox Fußballspieler",
-    "info-hastemplate-text": "Sucht Seiten, die die angegebene Vorlage verwenden.",
-
     "label-prefix": "Präfix im Titel:",
     "prefix-placeholder": "FC ",
     "info-prefix-text": "Sucht Seiten, deren Titel mit dem angegebenen Präfix beginnen.",
@@ -65,6 +54,31 @@
     "label-linkfrom": "Verlinkt von:",
     "linkfrom-placeholder": "Miroslav Klose",
     "info-linkfrom-text": "Sucht Seiten, die auf die angegebene Seite verlinken.",
+
+    "label-category-dropdown": "Kategorie:",
+    "placeholder-category-dropdown": "Kategorie auswählen",
+    "info-category-dropdown-text": "Wählen Sie eine Wikipedia-Kategorie, um Ihre Suche einzugrenzen.",
+    "category-Science": "Wissenschaft",
+    "category-History": "Geschichte",
+    "category-Art": "Kunst",
+    "category-Technology": "Technologie",
+    "category-Geography": "Geographie",
+
+    "label-license-agreement": "Lizenzvereinbarung",
+    "label-terms-of-use": "Nutzungsbedingungen",
+    "label-non-commercial-use": "Nicht-kommerzielle Nutzung",
+    "label-faq": "FAQ",
+
+    "heading-content-technical": "Inhalt & Technik:",
+    "heading-behavioral": "Suchverhalten:",
+
+    "label-insource": "Im Quelltext (Wikitext):",
+    "insource-placeholder": "insource:/regex/ oder insource:\"text\"",
+    "info-insource-text": "Sucht nach Begriffen oder regulären Ausdrücken direkt im Wikitext.",
+
+    "label-hastemplate": "Verwendet Vorlage:",
+    "hastemplate-placeholder": "Infobox Fußballspieler",
+    "info-hastemplate-text": "Sucht Seiten, die die angegebene Vorlage verwenden.",
 
     "label-filetype": "Dateityp:",
     "filetype-placeholder": "pdf, jpg, ogg",
@@ -100,27 +114,8 @@
     
     "generated-string-heading": "Generierte Suchzeichenkette:",
     "generated-string-placeholder": "Die generierte Zeichenkette wird hier angezeigt.",
-    "search-results-heading": "Suchergebnisse (erste 10):",
+    "search-results-heading": "Simulierte Suchergebnisse (erste 10):",
     "no-results-found": "Keine simulierten Ergebnisse gefunden.",
     
-    "footer-text": "© 2025 WikiGUI. Alle Rechte vorbehalten.",
-
-    "lang-de-option": "Deutsch (de)",
-    "lang-en-option": "Englisch (en)",
-    "lang-fr-option": "Französisch (fr)",
-    "lang-es-option": "Spanisch (es)",
-    "lang-zh-option": "Chinesisch (zh)",
-    "lang-hi-option": "Hindi (hi)",
-    "lang-ar-option": "Arabisch (ar)",
-    "lang-ru-option": "Russisch (ru)",
-    "lang-pt-option": "Portugiesisch (pt)",
-
-    "label-category-dropdown": "Kategorie:",
-    "placeholder-category-dropdown": "Kategorie auswählen",
-    "info-category-dropdown-text": "Wählen Sie eine Wikipedia-Kategorie, um Ihre Suche einzugrenzen.",
-    "category-Science": "Wissenschaft",
-    "category-History": "Geschichte",
-    "category-Art": "Kunst",
-    "category-Technology": "Technologie",
-    "category-Geography": "Geographie"
+    "footer-text": "© 2025 WikiGUI. Alle Rechte vorbehalten."
 }

@@ -55,6 +55,31 @@
     "linkfrom-placeholder": "Miroslav Klose",
     "info-linkfrom-text": "Trouve les pages qui contiennent un lien vers la page spécifiée.",
 
+    "label-category-dropdown": "Catégorie :",
+    "placeholder-category-dropdown": "Sélectionner une catégorie",
+    "info-category-dropdown-text": "Sélectionnez une catégorie Wikipédia pour affiner votre recherche.",
+    "category-Science": "Science",
+    "category-History": "Histoire",
+    "category-Art": "Art",
+    "category-Technology": "Technologie",
+    "category-Geography": "Géographie",
+
+    "label-license-agreement": "Accord de licence",
+    "label-terms-of-use": "Conditions d'utilisation",
+    "label-non-commercial-use": "Usage non commercial",
+    "label-faq": "FAQ",
+
+    "heading-content-technical": "Contenu & Technique:",
+    "heading-behavioral": "Comportement de recherche:",
+
+    "label-insource": "Dans le code source (Wikitext):",
+    "insource-placeholder": "insource:/regex/ ou insource:\"texte\"",
+    "info-insource-text": "Recherche les termes ou expressions régulières directement dans le Wikitexte.",
+
+    "label-hastemplate": "Utilise le modèle :",
+    "hastemplate-placeholder": "Infobox Joueur de football",
+    "info-hastemplate-text": "Trouve les pages qui utilisent le modèle spécifié.",
+
     "label-filetype": "Type de fichier :",
     "filetype-placeholder": "pdf, jpg, ogg",
     "info-filetype-text": "Filtre les fichiers multimédias par leur type (ex. pdf, jpg, svg).",
@@ -89,7 +114,7 @@
     
     "generated-string-heading": "Chaîne de recherche générée :",
     "generated-string-placeholder": "La chaîne générée apparaîtra ici.",
-    "search-results-heading": "Résultats de recherche (10 premiers) :",
+    "search-results-heading": "Résultats de recherche simulés (10 premiers) :",
     "no-results-found": "Aucun résultat simulé trouvé.",
     
     "footer-text": "© 2025 WikiGUI. Tous droits réservés.",
@@ -102,14 +127,5 @@
     "lang-hi-option": "Hindi (hi)",
     "lang-ar-option": "Arabe (ar)",
     "lang-ru-option": "Russe (ru)",
-    "lang-pt-option": "Portugais (pt)",
-
-    "label-category-dropdown": "Catégorie :",
-    "placeholder-category-dropdown": "Sélectionner une catégorie",
-    "info-category-dropdown-text": "Sélectionnez une catégorie Wikipédia pour affiner votre recherche.",
-    "category-Science": "Science",
-    "category-History": "Histoire",
-    "category-Art": "Art",
-    "category-Technology": "Technologie",
-    "category-Geography": "Géographie"
+    "lang-pt-option": "Portugais (pt)"
 }

@@ -55,6 +55,31 @@
     "linkfrom-placeholder": "Miroslav Klose",
     "info-linkfrom-text": "Finds pages that link to the specified page.",
 
+    "label-category-dropdown": "Category:",
+    "placeholder-category-dropdown": "Select a category",
+    "info-category-dropdown-text": "Select a Wikipedia category to narrow down your search.",
+    "category-Science": "Science",
+    "category-History": "History",
+    "category-Art": "Art",
+    "category-Technology": "Technology",
+    "category-Geography": "Geography",
+
+    "label-license-agreement": "License Agreement",
+    "label-terms-of-use": "Terms of Use",
+    "label-non-commercial-use": "Non-Commercial Use",
+    "label-faq": "FAQ",
+
+    "heading-content-technical": "Content & Technical:",
+    "heading-behavioral": "Search Behavior:",
+
+    "label-insource": "In Source (Wikitext):",
+    "insource-placeholder": "insource:/regex/ or insource:\"text\"",
+    "info-insource-text": "Searches for terms or regular expressions directly in the Wikitext.",
+
+    "label-hastemplate": "Uses Template:",
+    "hastemplate-placeholder": "Infobox Football Player",
+    "info-hastemplate-text": "Finds pages that use the specified template.",
+
     "label-filetype": "File Type:",
     "filetype-placeholder": "pdf, jpg, ogg",
     "info-filetype-text": "Filters media files by their type (e.g., pdf, jpg, svg).",
@@ -90,26 +115,5 @@
     "generated-string-heading": "Generated Search String:",
     "generated-string-placeholder": "Generated string will appear here.",
     "search-results-heading": "Search Results (First 10):",
-    "no-results-found": "No simulated results found.",
-    
-    "footer-text": "© 2025 WikiGUI. All rights reserved.",
-
-    "lang-de-option": "Deutsch (de)",
-    "lang-en-option": "Englisch (en)",
-    "lang-fr-option": "Französisch (fr)",
-    "lang-es-option": "Spanisch (es)",
-    "lang-zh-option": "Chinesisch (zh)",
-    "lang-hi-option": "Hindi (hi)",
-    "lang-ar-option": "Arabisch (ar)",
-    "lang-ru-option": "Russisch (ru)",
-    "lang-pt-option": "Portugiesisch (pt)",
-
-    "label-category-dropdown": "Category:",
-    "placeholder-category-dropdown": "Select a category",
-    "info-category-dropdown-text": "Select a Wikipedia category to narrow down your search.",
-    "category-Science": "Science",
-    "category-History": "History",
-    "category-Art": "Art",
-    "category-Technology": "Technology",
-    "category-Geography": "Geography"
+    "no-results-found": "No simulated results found."
 }
