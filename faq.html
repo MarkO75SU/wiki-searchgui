@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - WikiGUI</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .legal-document-container { /* Reusing the same container for consistency */
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+        }
+        .legal-document-container h1 {
+            color: var(--primary-color);
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+        }
+        .legal-document-container h2 {
+            color: var(--text-dark);
+            font-size: 1.5rem;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .legal-document-container h3 {
+            color: var(--text-dark);
+            font-size: 1.3rem;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        .legal-document-container p, .legal-document-container ul {
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+        .legal-document-container ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .legal-document-container li {
+            margin-bottom: 10px;
+        }
+        .legal-document-container pre { /* For code snippets if any */
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', Courier, monospace;
+        }
+        .disclaimer {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin-top: 40px;
+            border-top: 1px solid #dee2e6;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="legal-document-container">
+        <h1>Frequently Asked Questions (FAQ) - WikiGUI</h1>
+        <p>Welcome to the FAQ section for WikiGUI! This tool helps you construct advanced Wikipedia search queries. If you can't find an answer here, please refer to the official Wikipedia search help or contact support if available.</p>
+
+        <h2>1. Getting Started</h2>
+        <ul>
+            <li><strong>Q: What is WikiGUI?</strong><br>
+                A: WikiGUI is a web-based tool that assists users in building complex search queries for Wikipedia by providing an intuitive interface for various search parameters.
+            </li>
+            <li><strong>Q: Is WikiGUI free to use?</strong><br>
+                A: WikiGUI is provided under an open license (see LICENSE_AGREEMENT.txt). Basic use is free. Please refer to the LICENSE_AGREEMENT.txt and NON_COMMERCIAL_USE.txt for details on usage restrictions and commercial use.
+            </li>
+            <li><strong>Q: Do I need to install anything to use WikiGUI?</strong><br>
+                A: No, WikiGUI is a web application. You can use it directly from your web browser without any installation, provided you have an internet connection.
+            </li>
+            <li><strong>Q: Where can I find the official Wikipedia search guide?</strong><br>
+                A: You can find the official guide by clicking the link in the header of the page, which will direct you to the search help documentation for the selected Wikipedia language.
+            </li>
+        </ul>
+
+        <h2>2. Features & Functionality</h2>
+        <ul>
+            <li><strong>Q: How does the "All these words" field work?</strong><br>
+                A: Entering terms in the "All these words" field means all of them must be present in the search results (equivalent to an implicit AND).
+            </li>
+            <li><strong>Q: What's the difference between "All these words" and "Exact Phrase"?</strong><br>
+                A: "All these words" requires each word to be present, but not necessarily together. "Exact Phrase" requires the sequence of words to appear together, enclosed in quotation marks.
+            </li>
+            <li><strong>Q: How can I exclude specific words from my search?</strong><br>
+                A: Use the "Without these words" field. Enter the words you wish to exclude, and pages containing any of these words will not be returned.
+            </li>
+            <li><strong>Q: How do I search within a specific category?</strong><br>
+                A: You can use the "In Category" field to specify one or more categories. For subcategories, use the "Deep Category" field.
+            </li>
+            <li><strong>Q: What are Namespaces?</strong><br>
+                A: Namespaces are different areas within Wikipedia (e.g., Articles, Files, Categories, Help pages). You can select specific namespaces to narrow down your search results.
+            </li>
+            <li><strong>Q: How does the new category dropdown work?</strong><br>
+                A: The "Category" dropdown allows you to select a predefined Wikipedia category (e.g., Science, History) to pre-fill the "In Category" search parameter. This helps quickly target broad subject areas.
+            </li>
+        </ul>
+
+        <h2>3. Troubleshooting & Support</h2>
+        <ul>
+            <li><strong>Q: I entered my search parameters, but the "Generated Search String" is empty.</strong><br>
+                A: Ensure you have entered at least one search term in the primary fields like "All these words" or "Exact Phrase".
+            </li>
+            <li><strong>Q: The search results seem incomplete or incorrect.</strong><br>
+                A: Double-check your entered parameters. Wikipedia's search syntax can be complex. Refer to the official Wikipedia search help link for detailed information on how parameters work. Using specific parameter combinations (like `intitle:` vs. `intext:`) can significantly affect results.
+            </li>
+            <li><strong>Q: How do I report a bug or suggest a new feature for WikiGUI?</strong><br>
+                A: Please refer to the project's repository (if available) for issue tracking, or contact the developer via [mention contact method if available, e.g., GitHub issues page].
+            </li>
+        </ul>
+
+        <h2>4. Legal & Licensing</h2>
+        <ul>
+            <li><strong>Q: What license is WikiGUI provided under?</strong><br>
+                A: WikiGUI is provided under an open license. Please refer to the `LICENSE_AGREEMENT.txt` file for details.
+            </li>
+            <li><strong>Q: Can I use WikiGUI for commercial purposes?</strong><br>
+                A: Please review the `NON_COMMERCIAL_USE.txt` file and the `LICENSE_AGREEMENT.txt` for information regarding commercial use. It is likely restricted unless a separate commercial license is obtained.
+            </li>
+            <li><strong>Q: Where can I find the Terms of Use?</strong><br>
+                A: The basic terms of use are located in the `TERMS_OF_USE.txt` file.
+            </li>
+        </ul>
+
+        <p class="disclaimer">This FAQ is a starting point. More specific questions can be added as needed.</p>
+    </div>
+</body>
+</html>
