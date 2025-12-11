@@ -137,16 +137,23 @@ function getCurrentFormValues() {
 
 // Function to save the current search
 function saveCurrentSearch() {
+    console.log("saveCurrentSearch called."); // DEBUG
     const query = document.getElementById('generated-search-string-display').textContent;
     const comment = document.getElementById('save-search-comment').value.trim();
     const formState = getCurrentFormValues();
 
+    console.log("Query to save:", query); // DEBUG
+    console.log("Comment to save:", comment); // DEBUG
+    console.log("Form State to save:", formState); // DEBUG
+
     if (!query) {
-        alert('Please generate a search string first before saving.');
+        alert(getTranslation('alert-generate-search-string', 'Please generate a search string first before saving.')); // Use translation
+        console.warn("Save cancelled: No query generated."); // DEBUG
         return;
     }
 
     let savedSearches = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY) || '[]');
+    console.log("Saved searches BEFORE attempting to save:", savedSearches); // DEBUG
     
     // Check if a search with the same query and comment already exists to avoid duplicates
     const isDuplicate = savedSearches.some(
@@ -154,23 +161,26 @@ function saveCurrentSearch() {
     );
 
     if (isDuplicate) {
-        alert('This exact search (query and comment) is already saved!');
+        alert(getTranslation('alert-search-already-saved', 'This exact search (query and comment) is already saved!')); // Use translation
+        console.warn("Save cancelled: Duplicate search detected."); // DEBUG
         return;
     }
 
     const newSearch = {
         id: Date.now().toString(), // Simple unique ID
         query: query,
-        comment: comment || 'No comment provided',
+        comment: comment || getTranslation('no-comment-provided', 'No comment provided'), // Use translation
         timestamp: Date.now(),
         formState: formState // Save the full form state
     };
 
     savedSearches.push(newSearch);
+    console.log("Saved searches AFTER new search added (before localStorage update):", savedSearches); // DEBUG
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(savedSearches));
+    console.log("localStorage AFTER saving:", localStorage.getItem(LOCAL_STORAGE_KEY)); // DEBUG
     document.getElementById('save-search-comment').value = ''; // Clear comment input
     loadSavedSearches(); // Refresh the list
-    alert('Search saved successfully!');
+    alert(getTranslation('alert-search-saved', 'Search saved successfully!')); // Use translation
 }
 
 // Function to load a saved search into the form
@@ -246,6 +256,8 @@ function loadSavedSearches() {
 
 
 
+
+} // Close loadSavedSearches function
 
 // === Import/Export Functions ===
 
@@ -446,6 +458,22 @@ function applyTranslations() {
             const infoId = element.dataset.infoId;
             if (translations[currentLang] && translations[currentLang][infoId]) {
                 element.title = translations[currentLang][infoId];
+            }
+        }
+        
+        // Translate preset buttons by data-preset-type
+        if (element.classList.contains('preset-button') && element.dataset.presetType) {
+            const presetKey = `preset-${element.dataset.presetType}`;
+            if (translations[currentLang] && translations[currentLang][presetKey]) {
+                element.textContent = translations[currentLang][presetKey];
+            }
+        }
+
+        // Translate import label
+        if (element.classList.contains('import-label') && element.id) {
+            const importLabelKey = element.id;
+            if (translations[currentLang] && translations[currentLang][importLabelKey]) {
+                element.textContent = translations[currentLang][importLabelKey];
             }
         }
     });
