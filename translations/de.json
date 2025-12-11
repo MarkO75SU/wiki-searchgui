@@ -7,54 +7,41 @@
     "main-heading": "Wikipedia Suchhelfer",
     "official-doc-link": "Offizielle Wikipedia Suchdokumentation",
     "general-params-description": "Erfahren Sie, wie Sie Suchparameter effektiv nutzen. Verwenden Sie zum Beispiel \"AND\" oder \"OR\" zwischen Begriffen, oder \"-Begriff\" zum Ausschließen.",
-    
     "heading-main-query": "Hauptsuchanfrage:",
     "label-search-query": "Alle diese Wörter:",
     "search-query-placeholder": "1. FC Köln",
     "info-all-words-text": "Alle eingegebenen Wörter müssen in den Ergebnissen vorkommen (implizites UND).\n",
-
     "label-exact-phrase": "Exakte Phrase:",
     "exact-phrase-placeholder": "z.B. \"RheinEnergieStadion\"",
     "info-exact-phrase-text": "Sucht nach dieser genauen Wortfolge.",
-
     "label-without-words": "Ohne diese Wörter:",
     "without-words-placeholder": "Düsseldorf",
     "info-without-words-text": "Schließt Seiten aus, die diese Wörter enthalten.",
-
     "label-any-words": "Mindestens eines dieser Wörter (ODER):",
     "any-words-placeholder": "Fußball ODER Soccer",
     "info-any-words-text": "Sucht Seiten, die mindestens eines der angegebenen Wörter enthalten.",
-
     "label-target-wiki-lang": "Ziel-Wiki-Sprache:",
     "info-target-lang-text": "Wählt die Sprache des Wikipedia-Projekts, in dem gesucht werden soll.",
-
     "heading-scope-location": "Bereich & Ort:",
     "label-intitle": "Im Titel suchen (Hauptsuchanfrage)",
     "info-intitle-text": "Sucht die Hauptsuchanfrage nur im Titel des Artikels.",
-
     "label-intext": "Im Text suchen",
     "info-intext-text": "Sucht nach Begriffen nur im Haupttext des Artikels.",
-
     "label-incategory": "In Kategorie:",
     "incategory-placeholder": "Fußballvereine",
     "info-incategory-text": "Sucht Artikel innerhalb einer oder mehrerer Kategorien. Mehrere Kategorien mit Komma trennen.",
-
     "label-deepcat": "Tiefe Kategorie:",
     "deepcat-placeholder": "Sport",
     "info-deepcat-text": "Sucht Artikel in der angegebenen Kategorie und deren Unterkategorien.",
-
     "label-prefix": "Präfix im Titel:",
     "prefix-placeholder": "FC ",
     "info-prefix-text": "Sucht Seiten, deren Titel mit dem angegebenen Präfix beginnen.",
-
     "label-subpageof": "Unterseite von:",
     "subpageof-placeholder": "Hauptseite",
     "info-subpageof-text": "Sucht Unterseiten der angegebenen Seite.",
-
     "label-linkfrom": "Verlinkt von:",
     "linkfrom-placeholder": "Miroslav Klose",
     "info-linkfrom-text": "Sucht Seiten, die auf die angegebene Seite verlinken.",
-
     "label-category-dropdown": "Kategorie:",
     "placeholder-category-dropdown": "Kategorie auswählen",
     "info-category-dropdown-text": "Wählen Sie eine Wikipedia-Kategorie, um Ihre Suche einzugrenzen.",
@@ -63,32 +50,25 @@
     "category-Art": "Kunst",
     "category-Technology": "Technologie",
     "category-Geography": "Geographie",
-
     "label-license-agreement": "Lizenzvereinbarung",
     "label-terms-of-use": "Nutzungsbedingungen",
     "label-non-commercial-use": "Nicht-kommerzielle Nutzung",
     "label-faq": "FAQ",
-
     "heading-content-technical": "Inhalt & Technik:",
     "heading-behavioral": "Suchverhalten:",
-
     "label-insource": "Im Quelltext (Wikitext):",
     "insource-placeholder": "insource:/regex/ oder insource:\"text\"",
     "info-insource-text": "Sucht nach Begriffen oder regulären Ausdrücken direkt im Wikitext.",
-
     "label-hastemplate": "Verwendet Vorlage:",
     "hastemplate-placeholder": "Infobox Fußballspieler",
     "info-hastemplate-text": "Sucht Seiten, die die angegebene Vorlage verwenden.",
-
     "label-filetype": "Dateityp:",
     "filetype-placeholder": "pdf, jpg, ogg",
     "info-filetype-text": "Filtert Mediendateien nach ihrem Typ (z.B. pdf, jpg, svg).",
-
     "label-filesize": "Dateigröße (Bytes):",
     "filesize-min-placeholder": "Min",
     "filesize-max-placeholder": "Max",
     "info-filesize-text": "Filtert Mediendateien nach ihrer Größe. Verwenden Sie Min und Max für einen Bereich.",
-
     "label-namespaces": "Namensräume:",
     "label-ns-main": "Artikel",
     "info-ns-main-text": "Sucht im Haupt-Namensraum (Artikel).",
@@ -102,20 +82,13 @@
     "info-ns-user-text": "Sucht im Benutzer-Namensraum.",
     "label-ns-template": "Vorlage",
     "info-ns-template-text": "Sucht im Vorlagen-Namensraum.",
-
     "label-fuzzy": "Fuzzy-Suche (tilde ~)",
     "info-fuzzy-text": "Erlaubt geringfügige Rechtschreibabweichungen (z.B. 'haus~' findet 'Häuser').",
-
-    "presets-heading": "Suchvoreinstellungen:",
-    "preset-easy": "Einfach",
-    "preset-middle": "Mittel",
-    "preset-complex": "Komplex",
     "generate-search-string-button": "Suchzeichenkette generieren & Vorschau",
-    
     "generated-string-heading": "Generierte Suchzeichenkette:",
     "generated-string-placeholder": "Die generierte Zeichenkette wird hier angezeigt.",
-    "search-results-heading": "Simulierte Suchergebnisse (erste 10):",
+    "search-results-heading": "Suchergebnisse (erste 10):",
     "no-results-found": "Keine simulierten Ergebnisse gefunden.",
-    
     "footer-text": "© 2025 WikiGUI. Alle Rechte vorbehalten."
 }
+

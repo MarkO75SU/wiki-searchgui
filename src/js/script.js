@@ -24,7 +24,7 @@ const wikipediaSearchHelpUrls = {
 // Helper function to fetch translations
 async function fetchTranslations(lang) {
     try {
-        const response = await fetch(`${lang}.json`);
+        const response = await fetch(`translations/${lang}.json`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
