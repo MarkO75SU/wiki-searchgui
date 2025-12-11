@@ -327,8 +327,10 @@ header h1 {
     transition: background-color 0.3s ease;
     display: flex; /* Use flexbox to align items */
     align-items: center; /* Vertically center items */
-    justify-content: space-between; /* Distribute space between elements */
-    padding-right: 15px; /* Add some padding on the right for the arrow */
+    gap: 10px; /* Space between items in the header */
+    padding: 10px 15px; /* Add padding to the header */
+    margin-bottom: 5px; /* Space below header */
+    border-radius: 5px; /* Slightly rounded corners */
 }
 
 .accordion-header:hover {
@@ -344,10 +346,10 @@ header h1 {
     display: inline-block;
     width: 0;
     height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 5px solid var(--text-dark); /* Down arrow */
-    margin-left: 10px;
+    border-left: 6px solid transparent; /* Slightly larger arrow */
+    border-right: 6px solid transparent;
+    border-top: 6px solid var(--text-dark); /* Down arrow */
+    margin-left: auto; /* Push the arrow to the right */
     transition: transform 0.3s ease;
 }
 
@@ -357,8 +359,20 @@ header h1 {
 }
 
 .accordion-content {
-    display: none;
-    padding-top: 15px;
+    display: grid; /* Use grid for layout */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
+    gap: 15px; /* Spacing between grid items */
+    padding: 15px; /* Add padding inside content */
+    border: 1px solid var(--border-color); /* Add border for definition */
+    border-top: none; /* No top border, as header has one */
+    border-radius: 0 0 5px 5px; /* Rounded bottom corners */
+    margin-bottom: 20px; /* Space below content */
+}
+
+/* Ensure form-groups and option-groups within accordion-content fit the grid */
+.accordion-content .form-group,
+.accordion-content .option-group {
+    margin-bottom: 0; /* Remove default stacking margin as grid handles spacing */
 }
 
 /* Ensure info-icons are visible */
