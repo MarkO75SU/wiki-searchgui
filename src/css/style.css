@@ -154,6 +154,11 @@ header h1 {
     cursor: help;
     margin-left: 5px; /* Closer to the word */
     z-index: 10;
+    transition: background-color 0.2s ease; /* Added for smooth transition */
+}
+
+.info-icon:hover {
+    background-color: #117a8b; /* A slightly darker shade of info-color on hover */
 }
 
 /* Info popups general styling */
@@ -246,7 +251,10 @@ header h1 {
     background-color: var(--background-light);
 }
 
-#generated-search-string-display {
+.generated-string-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between string and copy icon */
     background-color: #e9ecef;
     padding: 10px;
     border-radius: 5px;
@@ -254,6 +262,51 @@ header h1 {
     word-wrap: break-word;
     font-size: 0.95rem;
     color: #333;
+    margin-bottom: 15px;
+    cursor: pointer; /* Indicate clickability */
+    transition: background-color 0.2s ease;
+}
+
+.generated-string-wrapper:hover {
+    background-color: #d8e1e7; /* Slightly darker on hover */
+}
+
+#generated-search-string-display.clickable-search-string {
+    flex-grow: 1; /* Allow the text to take up available space */
+    margin: 0; /* Remove default paragraph margin */
+    user-select: all; /* Allow easy selection */
+}
+
+.copy-icon {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.search-string-explanation {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #f1f8ff; /* Light blue background */
+    border: 1px solid #cce5ff; /* Blue border */
+    border-radius: 8px;
+    font-size: 0.9rem;
+    color: #004085; /* Dark blue text */
+}
+
+.search-string-explanation h4 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    color: #002752; /* Even darker blue for heading */
+}
+
+.search-string-explanation ul {
+    list-style-type: disc; /* Use discs for list items */
+    padding-left: 20px;
+    margin-bottom: 0;
+}
+
+.search-string-explanation li {
+    margin-bottom: 5px;
 }
 
 #simulated-search-results {
@@ -369,24 +422,242 @@ header h1 {
     margin-bottom: 20px; /* Space below content */
 }
 
-/* Ensure form-groups and option-groups within accordion-content fit the grid */
-.accordion-content .form-group,
-.accordion-content .option-group {
-    margin-bottom: 0; /* Remove default stacking margin as grid handles spacing */
+/* Grid layout for Main Search Query section specifically */
+.accordion-content.grid-layout {
+    grid-template-columns: 1fr; /* Single column by default for smaller screens */
 }
 
-/* Ensure info-icons are visible */
-.info-icon {
-    display: inline-flex !important; /* Use important to override other potential styles */
+.accordion-content.grid-layout .grid-item {
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+    align-items: flex-start; /* Align contents to the left */
+    margin-bottom: 0; /* Remove default margin from form-group/option-group */
 }
 
-/* Footer */
-footer {
-    background-color: var(--text-dark);
+.accordion-content.grid-layout .grid-item label {
+    display: block; /* Ensure label takes full width */
+    margin-bottom: 5px; /* Space between label and input */
+}
+
+.accordion-content.grid-layout .grid-item input[type="text"],
+.accordion-content.grid-layout .grid-item input[type="number"],
+.accordion-content.grid-layout .grid-item select {
+    width: 100%; /* Make inputs take full width of their grid item */
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Adjustments for larger screens for the grid layout */
+@media (min-width: 768px) {
+    .accordion-content.grid-layout {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for larger screens */
+        column-gap: 30px; /* More space between columns */
+    }
+}
+
+/* Responsive adjustments for larger screens for the grid layout */
+@media (min-width: 768px) {
+    .accordion-content.grid-layout {
+        grid-template-columns: repeat(2, 1fr); /* Two columns for larger screens */
+        column-gap: 30px; /* More space between columns */
+    }
+}
+
+/* Styling for Preset Searches section */
+.presets-container {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px dashed var(--border-color);
+    border-radius: 8px;
+    background-color: var(--background-light);
+}
+
+.presets-container h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.preset-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.preset-button {
+    background-color: var(--primary-color);
     color: var(--text-light);
-    text-align: center;
-    padding: 1.5rem 0;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.preset-button:hover {
+    background-color: #0056b3;
+}
+
+/* Styling for Saved Searches section */
+.saved-searches-container {
     margin-top: 40px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--background-light);
+}
+
+.saved-searches-container h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.save-search-input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow wrapping on smaller screens */
+}
+
+#save-search-comment {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+}
+
+#save-search-button {
+    background-color: var(--success-color);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+#save-search-button:hover {
+    background-color: #218838;
+}
+
+.import-export-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center; /* Center buttons horizontally */
+}
+
+.export-button, .import-label {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    text-align: center; /* Center text for label */
+    flex-grow: 1; /* Allow buttons to grow */
+    max-width: 180px; /* Limit max width for a nicer look */
+}
+
+.export-button:hover, .import-label:hover {
+    background-color: #5a6268; /* Darker secondary color on hover */
+}
+
+#saved-searches-list {
+    list-style: none;
+    padding: 0;
+}
+
+#saved-searches-list li {
+    background-color: var(--text-light);
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column; /* Stack details and actions */
+    gap: 10px;
+}
+
+#saved-searches-list li strong {
+    color: var(--text-dark);
+}
+
+#saved-searches-list li .search-comment {
+    font-style: italic;
+    color: var(--secondary-color);
+}
+
+.search-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+}
+
+.search-actions button {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.load-search-btn {
+    background-color: var(--info-color);
+    color: var(--text-light);
+}
+
+.load-search-btn:hover {
+    background-color: #138496;
+}
+
+.edit-search-btn {
+    background-color: var(--warning-color);
+    color: var(--text-dark);
+}
+
+.edit-search-btn:hover {
+    background-color: #e0a800;
+}
+
+.delete-search-btn {
+    background-color: #dc3545; /* Red color for delete */
+    color: var(--text-light);
+}
+
+.delete-search-btn:hover {
+    background-color: #c82333;
+}
+
+/* Responsive adjustments for save/preset buttons */
+@media (max-width: 768px) {
+    .save-search-input-group {
+        flex-direction: column;
+    }
+
+    #save-search-button {
+        width: 100%;
+    }
+
+    .preset-buttons {
+        flex-direction: column;
+    }
+
+    .preset-button {
+        width: 100%;
+    }
 }
 
 /* Styles for footer links */

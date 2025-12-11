@@ -29,6 +29,16 @@
                 <span id="general-params-description">Erfahren Sie, wie Sie Suchparameter effektiv nutzen. Verwenden Sie zum Beispiel "AND" oder "OR" zwischen Begriffen, oder "-Begriff" zum Ausschließen.</span>
             </p>
 
+            <div class="presets-container">
+                <h3>Preset Searches (Space Exploration)</h3>
+                <p>Click a preset to load a pre-configured search query for various complexities:</p>
+                <div class="preset-buttons">
+                    <button class="preset-button" data-preset-type="easy">Easy: Basic Space Exploration</button>
+                    <button class="preset-button" data-preset-type="medium">Medium: Mars Exploration Details</button>
+                    <button class="preset-button" data-preset-type="complex">Complex: Advanced Spacecraft Search</button>
+                </div>
+            </div>
+
             <div class="search-form-container">
                 <form id="search-form">
                     <div class="form-group">
@@ -48,149 +58,71 @@
 
                                         <div class="search-group" id="group-main-query">
 
-                                            <h3 class="accordion-header" id="heading-main-query">Main Search Query: <span class="info-icon" data-info-id="info-main-query" title="Define your core search terms here. Use exact phrases, exclusion words, or OR conditions to refine results.">?</span><span class="accordion-arrow"></span>
+                                            <h3 class="accordion-header" id="heading-main-query">Main Search Query: <span class="info-icon" data-info-id="info-main-query" title="Define your primary keywords. Combine terms with 'AND' (default), 'OR', or exclude with '-term'. Use quotes for exact phrases. Example: 'apple OR orange -fruit'">?</span><span class="accordion-arrow"></span>
 
                                             </h3>
 
-                                            <div class="accordion-content">
+                                            <div class="accordion-content grid-layout">
 
-                                                <div class="form-group">
+                                                <div class="grid-item">
 
                                                     <label for="search-query" id="label-search-query">All these words:</label>
 
-                                                    <input type="text" id="search-query" placeholder="1. FC Köln">
+                                                    <input type="text" id="search-query" placeholder="e.g., 'solar energy', 'global warming'">
 
                                                 </div>
 
                     
 
-                                                <div class="form-group">
+                                                <div class="grid-item">
 
                                                     <label for="exact-phrase" id="label-exact-phrase">Exact Phrase:</label>
 
-                                                    <input type="text" id="exact-phrase" placeholder='e.g. "RheinEnergieStadion"'>
+                                                    <input type="text" id="exact-phrase" placeholder='e.g., "artificial intelligence research"'>
 
                                                 </div>
 
                     
 
-                                                <div class="form-group">
+                                                <div class="grid-item">
 
                                                     <label for="without-words" id="label-without-words">Without these words:</label>
 
-                                                    <input type="text" id="without-words" placeholder="Düsseldorf">
+                                                    <input type="text" id="without-words" placeholder="e.g., 'war', 'conflict'">
 
                                                 </div>
 
                     
 
-                                                <div class="form-group">
+                                                <div class="grid-item">
 
                                                     <label for="any-words" id="label-any-words">At least one of these words (OR):</label>
 
-                                                    <input type="text" id="any-words" placeholder="Football OR Soccer">
+                                                    <input type="text" id="any-words" placeholder="e.g., 'Mars OR Venus'">
 
                                                 </div>
 
                     
 
-                                                                            
+                                                <div class="option-group grid-item">
+
+                                                    <input type="checkbox" id="option-wildcard">
+
+                                                    <label for="option-wildcard" id="label-option-wildcard">Enable Wildcard Search (e.g., Köl*)</label>
+
+                                                </div>
 
                     
 
-                                                                                                                                                        <div class="option-group">
+                                                <div class="option-group grid-item">
 
-                    
+                                                    <input type="checkbox" id="option-fuzzy">
 
-                                                                                                                                                            <input type="checkbox" id="option-wildcard">
+                                                    <label for="option-fuzzy" id="label-fuzzy">Fuzzy Search (tilde ~)</label>
 
-                    
+                                                </div>
 
-                                                                                                                                                            <label for="option-wildcard" id="label-option-wildcard">Enable Wildcard Search (e.g., Köl*)</label>
-
-                    
-
-                                                                                                                                                        </div>
-
-                    
-
-                                                                            
-
-                    
-
-                                                
-
-                    
-
-                                                                            
-
-                    
-
-                                                                            
-
-                    
-
-                                                
-
-                    
-
-                                                                                                                                                        <div class="option-group">
-
-                    
-
-                                                                            
-
-                    
-
-                                                
-
-                    
-
-                                                                                                                                                            <input type="checkbox" id="option-fuzzy">
-
-                    
-
-                                                                            
-
-                    
-
-                                                
-
-                    
-
-                                                                                                                                                            <label for="option-fuzzy" id="label-fuzzy">Fuzzy Search (tilde ~)</label>
-
-                    
-
-                                                                            
-
-                    
-
-                                                
-
-                    
-
-                                                                                                                                                        </div>
-
-                    
-
-                                                                            
-
-                    
-
-                                                
-
-                    
-
-                                                                            
-
-                    
-
-                                                
-
-                    
-
-                                                                        </div>
+                                            </div>
 
                     
 
@@ -200,7 +132,7 @@
 
                                         <div class="search-group" id="group-scope-location">
 
-                                            <h3 class="accordion-header" id="heading-scope-location">Scope & Location: <span class="info-icon" data-info-id="info-scope-location" title="Narrow down your search by category, links, or namespaces.">?</span><span class="accordion-arrow"></span>
+                                            <h3 class="accordion-header" id="heading-scope-location">Scope & Location: <span class="info-icon" data-info-id="info-scope-location" title="Focus your search within specific article titles, categories, or pages linked from other articles.">?</span><span class="accordion-arrow"></span>
 
                                             </h3>
 
@@ -224,7 +156,7 @@
 
                     
 
-                                                                                <input type="text" id="prefix-value" placeholder="Köln">
+                                                                                <input type="text" id="prefix-value" placeholder="e.g., 'Science:', 'History of'">
 
                     
 
@@ -234,17 +166,17 @@
 
                             <div class="form-group">
                                 <label for="incategory-value" id="label-incategory">In Category:</label>
-                                <input type="text" id="incategory-value" placeholder="Football Clubs">
+                                <input type="text" id="incategory-value" placeholder="e.g., 'Physics', 'Ancient Rome'">
                             </div>
 
                             <div class="form-group">
                                 <label for="deepcat-value" id="label-deepcat">Deep Category:</label>
-                                <input type="text" id="deepcat-value" placeholder="Sport">
+                                <input type="text" id="deepcat-value" placeholder="e.g., 'Biology', 'Literature'">
                             </div>
 
                             <div class="form-group">
                                 <label for="linkfrom-value" id="label-linkfrom">Linked from:</label>
-                                <input type="text" id="linkfrom-value" placeholder="Miroslav Klose">
+                                <input type="text" id="linkfrom-value" placeholder="e.g., 'Albert Einstein', 'Quantum Physics'">
                             </div>
 
                             <div class="form-group">
@@ -292,7 +224,7 @@
                     </div> <!-- End Scope/Location Group -->
                     
                     <div class="search-group" id="group-content-technical">
-                        <h3 class="accordion-header" id="heading-content-technical">Content & Technical: <span class="info-icon" data-info-id="info-content-technical" title="Refine searches based on file content, templates, or file types/sizes.">?</span><span class="accordion-arrow"></span>
+                        <h3 class="accordion-header" id="heading-content-technical">Content & Technical: <span class="info-icon" data-info-id="info-content-technical" title="Target articles based on their internal wikitext content, templates they use, or properties of associated files.">?</span><span class="accordion-arrow"></span>
                         </h3>
                         <div class="accordion-content">
                             <div class="form-group">
@@ -302,7 +234,7 @@
 
                             <div class="form-group">
                                 <label for="hastemplate-value" id="label-hastemplate">Uses Template:</label>
-                                <input type="text" id="hastemplate-value" placeholder="Infobox Football Player">
+                                <input type="text" id="hastemplate-value" placeholder="e.g., 'Infobox Scientist', 'Citation needed'">
                             </div>
 
                             <div class="form-group">
@@ -325,12 +257,33 @@
 
             <div class="search-output">
                 <h3 id="generated-string-heading">Generated Search String:</h3>
-                <p id="generated-search-string-display">Generated string will appear here.</p>
+                <div class="generated-string-wrapper">
+                    <p id="generated-search-string-display" class="clickable-search-string">Generated string will appear here.</p>
+                    <span class="copy-icon" title="Click to copy to clipboard">📋</span>
+                </div>
+                <div id="generated-string-explanation" class="search-string-explanation"></div>
 
                 <h3 id="search-results-heading">Search Results (First 10):</h3>
                 <ul id="simulated-search-results">
                     <!-- Simulated results will be inserted here -->
                     <li><div class="loading-indicator" style="display: none;">Loading results...</div></li>
+                </ul>
+            </div>
+
+            <div class="saved-searches-container">
+                <h3 id="saved-searches-heading">Saved Searches</h3>
+                <div class="save-search-input-group">
+                    <input type="text" id="save-search-comment" placeholder="Add a comment for this search (optional)">
+                    <button id="save-search-button">Save Current Search</button>
+                </div>
+                <div class="import-export-group">
+                    <button id="export-json-button" class="export-button">Export as JSON</button>
+                    <button id="export-csv-button" class="export-button">Export as CSV</button>
+                    <label for="import-file-input" class="import-label">Import Searches</label>
+                    <input type="file" id="import-file-input" accept=".json,.csv" style="display: none;">
+                </div>
+                <ul id="saved-searches-list">
+                    <!-- Saved searches will be dynamically inserted here -->
                 </ul>
             </div>
         </section>
