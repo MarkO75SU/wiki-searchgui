@@ -1672,16 +1672,82 @@ function generateSearchString() {
 
 }
 
+// Helper function to parse advanced search parameters from the query string
+function parseAdvancedSearchParams(query) {
+    const params = {
+        srsearch: query, // Default to the full query
+        srincategory: '',
+        srdeepcategory: '',
+        srhastemplate: '',
+        srprefix: '',
+        srincontent: '' // MediaWiki API uses srincontent for insource
+    };
+
+    let remainingQuery = query;
+
+    // Regex to extract parameters like "param:value" or "param:"value with spaces""
+    const extractParam = (regex, paramName) => {
+        const match = remainingQuery.match(regex);
+        if (match && match[1]) {
+            params[paramName] = match[1].replace(/^"|"$/g, ''); // Remove quotes if present
+            remainingQuery = remainingQuery.replace(match[0], '').trim();
+        }
+    };
+
+    // Extract incategory
+    extractParam(/incategory:("([^"]+)"|([^\s]+))/i, 'srincategory');
+    // Extract deepcat
+    extractParam(/deepcat:("([^"]+)"|([^\s]+))/i, 'srdeepcategory');
+    // Extract hastemplate
+    extractParam(/hastemplate:("([^"]+)"|([^\s]+))/i, 'srhastemplate');
+    // Extract prefix
+    extractParam(/prefix:("([^"]+)"|([^\s]+))/i, 'srprefix');
+    // Extract insource (maps to srincontent for list=search)
+    // Note: insource can also take regex, but srsearch with srincontent is usually for literal text
+    extractParam(/insource:("([^"]+)"|([^\s]+))/i, 'srincontent');
+    
+    // The remaining part of the query goes into srsearch
+    params.srsearch = remainingQuery.trim();
+
+    return params;
+}
+
 // Function to perform a Wikipedia search using the API
 async function performWikipediaSearch(query, lang) {
     const endpoint = `https://${lang}.wikipedia.org/w/api.php`;
-    const params = new URLSearchParams({
+    
+    // Parse the advanced parameters from the query string
+    const parsedParams = parseAdvancedSearchParams(query);
+    console.log("Parsed Search Parameters:", parsedParams); // DEBUG
+
+    const apiParams = {
         action: 'query',
         list: 'search',
-        srsearch: query,
         format: 'json',
         origin: '*' // This is needed for CORS
-    });
+    };
+
+    // Conditionally add parameters if they have a value
+    if (parsedParams.srsearch) {
+        apiParams.srsearch = parsedParams.srsearch;
+    }
+    if (parsedParams.srincategory) {
+        apiParams.srincategory = parsedParams.srincategory;
+    }
+    if (parsedParams.srdeepcategory) {
+        apiParams.srdeepcategory = parsedParams.srdeepcategory;
+    }
+    if (parsedParams.srhastemplate) {
+        apiParams.srhastemplate = parsedParams.srhastemplate;
+    }
+    if (parsedParams.srprefix) {
+        apiParams.srprefix = parsedParams.srprefix;
+    }
+    if (parsedParams.srincontent) {
+        apiParams.srincontent = parsedParams.srincontent;
+    }
+
+    const params = new URLSearchParams(apiParams);
     const url = `${endpoint}?${params}`;
     console.log("Wikipedia Search API URL:", url);
 
