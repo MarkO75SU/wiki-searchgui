@@ -98,11 +98,13 @@ const presetSearches = {
 
 // Function to clear all form fields
 function clearForm() {
+    console.log("clearForm called. Clearing all input fields."); // DEBUG
     document.querySelectorAll('#search-form input[type="text"]').forEach(input => input.value = '');
     document.querySelectorAll('#search-form input[type="number"]').forEach(input => input.value = '');
     document.querySelectorAll('#search-form input[type="checkbox"]').forEach(checkbox => checkbox.checked = false);
     document.querySelectorAll('#search-form select').forEach(select => select.selectedIndex = 0); // Reset dropdowns
     document.getElementById('save-search-comment').value = ''; // Clear the comment input
+    generateSearchString(); // Update the generated string and explanation after clearing
 }
 
 // Function to apply a selected preset search to the form
