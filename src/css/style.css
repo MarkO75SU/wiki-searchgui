@@ -521,8 +521,9 @@ header h1 {
     text-align: center; /* Center text within the button */
     height: auto; /* Allow vertical expansion */
     font-size: 1.1rem; /* Explicit font size */
-    /* Removed min-width, flex-grow to allow content-based sizing */
-    /* Removed margin-right as it's managed by parent gap */
+    margin-right: 0; /* Managed by parent gap */
+    min-width: unset; /* Allow content-based sizing */
+    flex-grow: unset; /* Allow content-based sizing */
 }
 
 .preset-button:hover {
