@@ -213,11 +213,14 @@ header h1 {
     color: var(--text-light);
     border: none;
     padding: 10px 18px;
-    margin-right: 10px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
+    white-space: normal; /* Allow text to wrap */
+    text-align: center; /* Center text within the button */
+    min-width: 150px; /* Set a minimum width for better readability */
+    flex-grow: 1; /* Allow buttons to grow and fill space */
 }
 
 .preset-button:hover {
@@ -672,6 +675,7 @@ header h1 {
 
     .preset-buttons {
         flex-direction: column;
+        gap: 8px; /* Space between stacked buttons */
     }
 
     .preset-button {
@@ -738,9 +742,10 @@ footer nav a:hover {
     }
 
     .preset-button {
-        width: 100%;
-        margin-bottom: 10px;
-        margin-right: 0;
+        /* These properties are now handled by min-width/flex-grow in base rule and parent gap */
+        /* width: 100%; */
+        /* margin-bottom: 10px; */
+        /* margin-right: 0; */
     }
 
     .info-popup {
