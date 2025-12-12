@@ -520,7 +520,7 @@ function applyTranslations() {
                     console.log(`Translating option ${langCode} with key ${translationKey}`);
                     option.textContent = translations[currentLang][translationKey];
                 } else {
-                    console.warn(`Translation not found for option ${langCode} with key ${translationKey} in ${currentLang}.json`);
+                    console.warn(`Translation not found for option ${langCode} with key ${translationKey} in ${currentLang}.js`);
                 }
             });
             
@@ -1721,6 +1721,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const saveSearchButton = document.getElementById('save-search-button');
     if (saveSearchButton) {
         saveSearchButton.addEventListener('click', saveCurrentSearch);
+    }
+
+    // Event listener for clear form button
+    const clearFormButton = document.getElementById('clear-form-button');
+    if (clearFormButton) {
+        clearFormButton.addEventListener('click', clearForm);
     }
 
     // Event listeners for export buttons

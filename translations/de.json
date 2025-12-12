@@ -80,6 +80,7 @@
     "filesize-max-placeholder": "Max",
     "info-filesize-text": "Filtert Mediendateien nach ihrer Größe. Verwenden Sie Min und Max für einen Bereich.",
     "generate-search-string-button": "Suchzeichenkette generieren & Vorschau",
+    "clear-form-button": "Formular leeren",
     "generated-string-heading": "Generierte Suchzeichenkette:",
     "generated-string-placeholder": "Die generierte Zeichenkette wird hier angezeigt.",
     "explanation-heading": "Erklärung:",

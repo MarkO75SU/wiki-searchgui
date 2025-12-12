@@ -243,6 +243,25 @@ header h1 {
     background-color: #218838;
 }
 
+#clear-form-button {
+    display: block;
+    width: 100%;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    border: none;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px; /* Space from the generate button */
+    transition: background-color 0.3s ease;
+}
+
+#clear-form-button:hover {
+    background-color: #5a6268;
+}
+
 .search-output {
     margin-top: 40px;
     padding: 20px;
