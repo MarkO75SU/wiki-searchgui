@@ -506,10 +506,12 @@ async function fetchTranslations(lang) {
 // Function to apply translations and update dynamic content
 function applyTranslations() {
     console.log("applyTranslations called."); // DEBUG
-    const elements = document.querySelectorAll('[id]');
-    elements.forEach(element => {
-        const key = element.id;
-        console.log(`Processing element with ID: ${key}`); // DEBUG
+    // Select elements with an ID or the 'preset-button' class
+    const elementsToTranslate = document.querySelectorAll('[id], .preset-button');
+
+    elementsToTranslate.forEach(element => {
+        const key = element.id || element.dataset.presetType;
+        console.log(`Processing element. ID: ${key}, Classes: ${element.className}`); // DEBUG
 
         // Check for placeholder translation specifically for input elements
         if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
