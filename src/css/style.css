@@ -132,12 +132,51 @@ header h1 {
     border-bottom: 1px dashed var(--border-color);
 }
 
-.form-group label, .option-group label {
-    display: inline-flex; /* Use inline-flex to keep text and icon on one line */
-    align-items: center; /* Vertically align items */
-    margin-bottom: 8px;
+.form-group {
+    display: flex;
+    flex-direction: column; /* Stack label and input vertically */
+    margin-bottom: 15px; /* Space between form groups */
+}
+
+.form-group label {
+    margin-bottom: 5px; /* Space between label and input */
     font-weight: bold;
-    position: relative; /* For positioning the info-popup relative to the label */
+}
+
+.option-group {
+    display: flex; /* Keep checkbox and label on the same line */
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.option-group input[type="checkbox"] {
+    margin-right: 8px; /* Space between checkbox and label */
+}
+
+.option-group label {
+    font-weight: normal; /* Checkbox labels usually aren't bold */
+    margin-bottom: 0;
+}
+
+/* Container for the file size min/max inputs */
+.file-size-inputs {
+    display: flex;
+    gap: 15px;
+}
+
+.file-size-inputs input {
+    width: 100%; /* Make each input take half the space */
+}
+
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    box-sizing: border-box; /* Important for 100% width */
+    font-size: 1rem;
 }
 
 .info-icon {
@@ -433,57 +472,11 @@ header h1 {
 }
 
 .accordion-content {
-    display: grid; /* Use grid for layout */
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive columns */
-    gap: 15px; /* Spacing between grid items */
-    padding: 15px; /* Add padding inside content */
-    border: 1px solid var(--border-color); /* Add border for definition */
-    border-top: none; /* No top border, as header has one */
-    border-radius: 0 0 5px 5px; /* Rounded bottom corners */
-    margin-bottom: 20px; /* Space below content */
-}
-
-/* Grid layout for Main Search Query section specifically */
-.accordion-content.grid-layout {
-    grid-template-columns: 1fr; /* Single column by default for smaller screens */
-}
-
-.accordion-content.grid-layout .grid-item {
-    display: flex;
-    flex-direction: column; /* Stack label and input vertically */
-    align-items: flex-start; /* Align contents to the left */
-    margin-bottom: 0; /* Remove default margin from form-group/option-group */
-}
-
-.accordion-content.grid-layout .grid-item label {
-    display: block; /* Ensure label takes full width */
-    margin-bottom: 5px; /* Space between label and input */
-}
-
-.accordion-content.grid-layout .grid-item input[type="text"],
-.accordion-content.grid-layout .grid-item input[type="number"],
-.accordion-content.grid-layout .grid-item select {
-    width: 100%; /* Make inputs take full width of their grid item */
-    padding: 8px;
+    padding: 20px 15px; /* Add some padding */
     border: 1px solid var(--border-color);
-    border-radius: 4px;
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-}
-
-/* Adjustments for larger screens for the grid layout */
-@media (min-width: 768px) {
-    .accordion-content.grid-layout {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for larger screens */
-        column-gap: 30px; /* More space between columns */
-    }
-}
-
-/* Responsive adjustments for larger screens for the grid layout */
-@media (min-width: 768px) {
-    .accordion-content.grid-layout {
-        grid-template-columns: repeat(2, 1fr); /* Two columns for larger screens */
-        column-gap: 30px; /* More space between columns */
-    }
+    border-top: none;
+    border-radius: 0 0 5px 5px;
+    margin-bottom: 20px;
 }
 
 /* Styling for Preset Searches section */
