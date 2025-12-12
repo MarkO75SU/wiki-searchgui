@@ -41,7 +41,7 @@ const wikipediaSearchHelpUrls = {
 // Preset search queries for "Space Exploration"
 const presetSearches = {
     easy: {
-        'search-query': 'space exploration', // Simple keyword
+        'search-query': 'Weltraumforschung', // Simple keyword in German
         'exact-phrase': '',
         'without-words': '',
         'any-words': '',
@@ -60,9 +60,9 @@ const presetSearches = {
     },
     medium: {
         'search-query': 'Mars', // Main topic
-        'exact-phrase': 'red planet', // Exact phrase
-        'without-words': 'rover', // Exclude
-        'any-words': 'exploration OR mission', // OR condition
+        'exact-phrase': 'Roter Planet', // Exact phrase in German
+        'without-words': 'Rover', // Exclude in German
+        'any-words': 'Erkundung OR Mission', // OR condition in German
         'option-intitle': false,
         'option-wildcard': false,
         'option-fuzzy': false,
@@ -77,19 +77,19 @@ const presetSearches = {
         'filesize-max': ''
     },
     complex: {
-        'search-query': '', // No main query to demonstrate other advanced features
+        'search-query': '', 
         'exact-phrase': '',
-        'without-words': '',
+        'without-words': 'Apollo', // Exclude in German
         'any-words': '',
         'option-intitle': false,
         'option-wildcard': false,
         'option-fuzzy': false,
         'incategory-value': '',
-        'deepcat-value': 'Astronomy', // Deep category
+        'deepcat-value': 'Raumfahrt', // German for Space Travel, more general
         'linkfrom-value': '',
         'prefix-value': '',
-        'insource-value': 'launch date', // Insource search
-        'hastemplate-value': 'Infobox Spacecraft', // Has template
+        'insource-value': 'Startdatum', // Insource single keyword in German
+        'hastemplate-value': 'Infobox Raumschiff', // German for Infobox Spacecraft
         'filetype-value': '',
         'filesize-min': '',
         'filesize-max': ''
@@ -1062,7 +1062,7 @@ function generateSearchString() {
 
 
 
-            if (anyWords) {
+                        if (anyWords) {
 
 
 
@@ -1070,7 +1070,7 @@ function generateSearchString() {
 
 
 
-                const words = anyWords.split(/\s+/).join(' OR ');
+        
 
 
 
@@ -1078,7 +1078,7 @@ function generateSearchString() {
 
 
 
-                queryParts.push(`(${words})`);
+                            // Split by "OR" (case-insensitive), trim each part, filter out empty strings, then join with " OR "
 
 
 
@@ -1086,7 +1086,7 @@ function generateSearchString() {
 
 
 
-                explanationParts.push(getTranslation('explanation-any-words', `Including pages with at least one of these words: "${anyWords}".`, { anyWords }));
+        
 
 
 
@@ -1094,7 +1094,87 @@ function generateSearchString() {
 
 
 
-            }
+                            const words = anyWords.split(/ OR /i).map(word => word.trim()).filter(word => word !== '').join(' OR ');
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+                            if (words) {
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+                                queryParts.push(`(${words})`);
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+                                explanationParts.push(getTranslation('explanation-any-words', `Including pages with at least one of these words: "${anyWords}".`, { anyWords }));
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+                            }
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+                        }
 
 
 
@@ -1278,23 +1358,27 @@ function generateSearchString() {
 
 
 
-            const inSource = getValue('insource-value');
+                        const inSource = getValue('insource-value');
 
 
 
-            if (inSource) {
+                        if (inSource) {
 
 
 
-                queryParts.push(`insource:${inSource}`);
+                            const quotedInSource = inSource.includes(' ') ? `"${inSource}"` : inSource;
 
 
 
-                explanationParts.push(getTranslation('explanation-insource', `Searching for pages containing "${inSource}" in their wikitext source.`, { inSource }));
+                            queryParts.push(`insource:${quotedInSource}`);
 
 
 
-            }
+                            explanationParts.push(getTranslation('explanation-insource', `Searching for pages containing "${inSource}" in their wikitext source.`, { inSource }));
+
+
+
+                        }
 
 
 
