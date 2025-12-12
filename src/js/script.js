@@ -85,11 +85,11 @@ const presetSearches = {
         'option-wildcard': false,
         'option-fuzzy': false,
         'incategory-value': '',
-        'deepcat-value': 'Raumfahrt', // German for Space Travel, more general
+        'deepcat-value': 'Astronomie', // German for Astronomy
         'linkfrom-value': '',
         'prefix-value': '',
-        'insource-value': 'Startdatum', // Insource single keyword in German
-        'hastemplate-value': 'Infobox Raumschiff', // German for Infobox Spacecraft
+        'insource-value': 'Weltraum', // German for Space
+        'hastemplate-value': 'Infobox', // General Infobox template
         'filetype-value': '',
         'filesize-min': '',
         'filesize-max': ''
