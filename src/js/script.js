@@ -76,24 +76,7 @@ const presetSearches = {
         'filesize-min': '',
         'filesize-max': ''
     },
-    complex: {
-        'search-query': '', 
-        'exact-phrase': '',
-        'without-words': '', // Removed for broader search
-        'any-words': '',
-        'option-intitle': false,
-        'option-wildcard': false,
-        'option-fuzzy': false,
-        'incategory-value': 'Fahrzeuge', // Broad German category for vehicles
-        'deepcat-value': '',
-        'linkfrom-value': '',
-        'prefix-value': '',
-        'insource-value': '', // Removed for broader search
-        'hastemplate-value': 'Infobox', // General Infobox template
-        'filetype-value': '',
-        'filesize-min': '',
-        'filesize-max': ''
-    }
+
 };
 
 // Function to clear all form fields
