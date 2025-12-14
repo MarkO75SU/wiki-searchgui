@@ -869,31 +869,7 @@ function generateSearchString() {
 
 
 
-    const mainQuery = getValue('search-query');
-
-
-
-    const exactPhrase = getValue('exact-phrase');
-
-
-
-    const withoutWords = getValue('without-words');
-
-
-
-    const anyWords = getValue('any-words');
-
-
-
-    const optionFuzzy = getValue('option-fuzzy');
-
-
-
-    const optionWildcard = getValue('option-wildcard'); // Not directly used in query construction as per comment
-
-
-
-    const optionIntitle = getValue('option-intitle');
+        const mainQuery = getValue('search-query');
 
 
 
@@ -901,7 +877,7 @@ function generateSearchString() {
 
 
 
-        const mainQueryInput = getValue('search-query');
+        const exactPhrase = getValue('exact-phrase');
 
 
 
@@ -909,7 +885,7 @@ function generateSearchString() {
 
 
 
-        // Wikipedia special characters that might need quoting if found in raw input
+        const withoutWords = getValue('without-words');
 
 
 
@@ -917,7 +893,7 @@ function generateSearchString() {
 
 
 
-        // This regex includes characters that could be interpreted as search operators
+        const anyWords = getValue('any-words');
 
 
 
@@ -925,7 +901,23 @@ function generateSearchString() {
 
 
 
-        const wikipediaSearchOperatorChars = /[!"#$%&'()*+,./:;<=>?@\[\\\]^`{|}~]/;
+        const optionFuzzy = getValue('option-fuzzy');
+
+
+
+
+
+
+
+        const optionWildcard = getValue('option-wildcard'); // Not directly used in query construction as per comment
+
+
+
+
+
+
+
+        const optionIntitle = getValue('option-intitle');
 
 
 
@@ -941,7 +933,63 @@ function generateSearchString() {
 
 
 
-        let finalMainQueryTerm = mainQueryInput;
+        // Handle Main Query, Intitle, and Fuzzy
+
+
+
+
+
+
+
+        if (mainQuery) {
+
+
+
+
+
+
+
+            let mainQueryTerm = mainQuery;
+
+
+
+
+
+
+
+            // If fuzzy is enabled, add the tilde.
+
+
+
+
+
+
+
+            if (optionFuzzy) {
+
+
+
+
+
+
+
+                mainQueryTerm += '~';
+
+
+
+
+
+
+
+                explanationParts.push(getTranslation('explanation-fuzzy-applied', `Applying fuzzy search to "${mainQuery}" to include similar terms.`, { mainQuery }));
+
+
+
+
+
+
+
+            }
 
 
 
@@ -957,7 +1005,7 @@ function generateSearchString() {
 
 
 
-        if (mainQueryInput) {
+            // If it's a general search (not intitle) and contains spaces or special characters, wrap it in quotes.
 
 
 
@@ -965,7 +1013,7 @@ function generateSearchString() {
 
 
 
-            // If mainQueryInput contains spaces or Wikipedia search operator characters,
+            if (!optionIntitle && (mainQueryTerm.includes(' ') || /[\(\)]/.test(mainQueryTerm))) {
 
 
 
@@ -973,7 +1021,7 @@ function generateSearchString() {
 
 
 
-            // AND it's not an intitle search, wrap it in quotes to force literal interpretation.
+                if (!(mainQueryTerm.startsWith('"') && mainQueryTerm.endsWith('"'))) {
 
 
 
@@ -981,39 +1029,7 @@ function generateSearchString() {
 
 
 
-            // intitle: operator itself handles quoting if needed.
-
-
-
-
-
-
-
-            if (!optionIntitle && (mainQueryInput.includes(' ') || wikipediaSearchOperatorChars.test(mainQueryInput))) {
-
-
-
-
-
-
-
-                // Only add quotes if not already quoted (to prevent double quoting issues)
-
-
-
-
-
-
-
-                if (!(mainQueryInput.startsWith('"') && mainQueryInput.endsWith('"'))) {
-
-
-
-
-
-
-
-                    finalMainQueryTerm = `"${mainQueryInput}"`;
+                    mainQueryTerm = `"${mainQueryTerm}"`;
 
 
 
@@ -1037,7 +1053,7 @@ function generateSearchString() {
 
 
 
-    
+            
 
 
 
@@ -1053,7 +1069,7 @@ function generateSearchString() {
 
 
 
-                // intitle operator syntax is `intitle:VALUE`. VALUE can be quoted for phrases.
+                queryParts.push(`intitle:${mainQueryTerm}`);
 
 
 
@@ -1061,31 +1077,7 @@ function generateSearchString() {
 
 
 
-                // If finalMainQueryTerm is already quoted, it means it contains spaces/special chars and we want to preserve that.
-
-
-
-
-
-
-
-                // So, no extra quotes around finalMainQueryTerm for intitle.
-
-
-
-
-
-
-
-                queryParts.push(`intitle:${finalMainQueryTerm}`);
-
-
-
-
-
-
-
-                explanationParts.push(getTranslation('explanation-intitle', `Searching for pages with "${mainQueryInput}" specifically in their title.`, { mainQuery: mainQueryInput }));
+                explanationParts.push(getTranslation('explanation-intitle', `Searching for pages with "${mainQuery}" specifically in their title.`, { mainQuery }));
 
 
 
@@ -1101,7 +1093,7 @@ function generateSearchString() {
 
 
 
-                queryParts.push(finalMainQueryTerm); // Use the potentially quoted term
+                queryParts.push(mainQueryTerm);
 
 
 
@@ -1109,7 +1101,7 @@ function generateSearchString() {
 
 
 
-                explanationParts.push(getTranslation('explanation-main-query', `Searching for pages containing the terms "${mainQueryInput}".`, { mainQuery: mainQueryInput }));
+                explanationParts.push(getTranslation('explanation-main-query', `Searching for pages containing the terms "${mainQuery}".`, { mainQuery }));
 
 
 
@@ -1126,38 +1118,6 @@ function generateSearchString() {
 
 
         }
-
-
-
-    
-
-
-
-            if (optionFuzzy && mainQuery) { // Apply fuzzy only if there's a main query
-
-
-
-    
-
-
-
-                processedQuery += '~';
-
-
-
-    
-
-
-
-                explanationParts.push(getTranslation('explanation-fuzzy-applied', `Applying fuzzy search to "${mainQuery}" to include similar terms.`, { mainQuery }));
-
-
-
-    
-
-
-
-            }
 
 
 
@@ -1911,7 +1871,8 @@ function parseAdvancedSearchParams(query) {
         srdeepcategory: '',
         srhastemplate: '',
         srprefix: '',
-        srincontent: '' // MediaWiki API uses srincontent for insource
+        srincontent: '', // MediaWiki API uses srincontent for insource
+        srfiletype: '' // Added for filetype
     };
 
     let remainingQuery = query;
@@ -1934,8 +1895,9 @@ function parseAdvancedSearchParams(query) {
     // Extract prefix
     extractParam(/prefix:("([^"]+)"|([^\s]+))/i, 'srprefix');
     // Extract insource (maps to srincontent for list=search)
-    // Note: insource can also take regex, but srsearch with srincontent is usually for literal text
     extractParam(/insource:("([^"]+)"|([^\s]+))/i, 'srincontent');
+    // Extract filetype
+    extractParam(/filetype:([^\s]+)/i, 'srfiletype');
     
     // The remaining part of the query goes into srsearch
     params.srsearch = remainingQuery.trim();
@@ -1976,6 +1938,9 @@ async function performWikipediaSearch(query, lang) {
     }
     if (parsedParams.srincontent) {
         apiParams.srincontent = parsedParams.srincontent;
+    }
+    if (parsedParams.srfiletype) {
+        apiParams.srfiletype = parsedParams.srfiletype;
     }
 
     const params = new URLSearchParams(apiParams);
