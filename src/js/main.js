@@ -26,6 +26,17 @@ async function initializeApp() {
     generateSearchString(); // To show placeholders correctly
     loadSavedSearches();
 
+    // Advanced mode toggle
+    const advancedToggle = document.getElementById('advanced-mode-toggle');
+    const searchFormContainer = document.querySelector('.search-form-container');
+    advancedToggle.addEventListener('change', () => {
+        if (advancedToggle.checked) {
+            searchFormContainer.classList.add('advanced-view');
+        } else {
+            searchFormContainer.classList.remove('advanced-view');
+        }
+    });
+
     // Setup event listeners
     document.getElementById('search-form').addEventListener('submit', handleSearchFormSubmit);
     document.getElementById('clear-form-button').addEventListener('click', clearForm);

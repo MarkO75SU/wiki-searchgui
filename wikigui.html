@@ -27,6 +27,13 @@
     <main class="container">
         <section class="search-interface">
             <h2 id="main-heading">Wikipedia Search Helper</h2>
+            <div class="mode-toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="advanced-mode-toggle">
+                    <span class="slider"></span>
+                </label>
+                <label for="advanced-mode-toggle" id="label-advanced-mode">Advanced Mode</label>
+            </div>
             <p id="intro-text">
                 <a href="https://de.wikipedia.org/wiki/Hilfe:Suche" target="_blank" id="official-doc-link">Offizielle Wikipedia Suchdokumentation</a>
                 <br>
@@ -99,7 +106,7 @@
 
                     
 
-                                        <div class="search-group" id="group-scope-location">
+                                        <div class="search-group" id="group-scope-location" data-advanced>
 
                                             <h3 class="accordion-header" id="heading-scope-location">Scope & Location: <span class="info-icon" data-info-id="info-scope-location" title="Focus your search within specific article titles, categories, or pages linked from other articles.">?</span><span class="accordion-arrow"></span>
 
@@ -169,7 +176,7 @@
             </div>
                     </div> <!-- End Scope/Location Group -->
                     
-                    <div class="search-group" id="group-content-technical">
+                    <div class="search-group" id="group-content-technical" data-advanced>
                         <h3 class="accordion-header" id="heading-content-technical">Content & Technical: <span class="info-icon" data-info-id="info-content-technical" title="Target articles based on their internal wikitext content, templates they use, or properties of associated files.">?</span><span class="accordion-arrow"></span>
                         </h3>
                         <div class="accordion-content">
