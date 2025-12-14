@@ -26,7 +26,7 @@ export function populatePresetCategories(categorySelectElement) {
     }
 }
 
-export function populatePresets(categorySelectElement, presetSelectElement) {
+export export function populatePresets(categorySelectElement, presetSelectElement) {
     presetSelectElement.innerHTML = `<option value="">${getTranslation('placeholder-select-preset')}</option>`;
     const selectedCategoryKey = categorySelectElement.value;
     if (selectedCategoryKey && presetCategories[selectedCategoryKey]) {
