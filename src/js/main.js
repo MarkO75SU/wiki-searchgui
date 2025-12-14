@@ -1,32 +1,27 @@
 // src/js/main.js
 import { setLanguage, setTranslations, getLanguage } from './modules/state.js';
-import { applyTranslations, clearForm, handleSearchFormSubmit, addAccordionFunctionality } from './modules/ui.js';
+import { applyTranslations, clearForm, handleSearchFormSubmit, addAccordionFunctionality, populatePresetCategories, applyPreset as applyPresetToForm } from './modules/ui.js';
 import { generateSearchString } from './modules/search.js';
 import { saveCurrentSearch, loadSavedSearches, handleSavedSearchActions } from './modules/storage.js';
+import { presetCategories } from './modules/presets.js';
 
 async function initializeApp() {
-    // Set initial language
     const initialLang = getLanguage();
     document.documentElement.lang = initialLang;
 
-    // Fetch translations and wait for them to complete
     try {
         const response = await fetch(`translations/${initialLang}.json`);
         const data = await response.json();
         setTranslations(initialLang, data);
-        
-        // Now that translations are loaded, apply them
         applyTranslations();
     } catch (error) {
         console.error(`Could not fetch initial translations for ${initialLang}:`, error);
     }
 
-    // Set up UI and event listeners after translations are ready
     addAccordionFunctionality();
-    generateSearchString(); // To show placeholders correctly
+    generateSearchString();
     loadSavedSearches();
 
-    // Advanced mode toggle
     const advancedToggle = document.getElementById('advanced-mode-toggle');
     const searchFormContainer = document.querySelector('.search-form-container');
     advancedToggle.addEventListener('change', () => {
@@ -37,7 +32,26 @@ async function initializeApp() {
         }
     });
 
-    // Setup event listeners
+    // New Preset Logic Setup
+    const presetCategorySelect = document.getElementById('preset-category-select');
+    const presetSelect = document.getElementById('preset-select');
+    const applyPresetButton = document.getElementById('apply-preset-button');
+
+    populatePresetCategories(presetCategorySelect, presetSelect);
+
+    presetCategorySelect.addEventListener('change', () => {
+        populatePresets(presetCategorySelect, presetSelect);
+    });
+
+    applyPresetButton.addEventListener('click', () => {
+        const selectedCategory = presetCategorySelect.value;
+        const selectedPreset = presetSelect.value;
+        if (selectedCategory && selectedPreset && presetCategories[selectedCategory] && presetCategories[selectedCategory].presets[selectedPreset]) {
+            applyPresetToForm(presetCategories[selectedCategory].presets[selectedPreset]);
+        }
+    });
+    // End New Preset Logic
+
     document.getElementById('search-form').addEventListener('submit', handleSearchFormSubmit);
     document.getElementById('clear-form-button').addEventListener('click', clearForm);
     document.getElementById('save-search-button').addEventListener('click', saveCurrentSearch);
@@ -52,13 +66,13 @@ async function initializeApp() {
                 const data = await response.json();
                 setTranslations(lang, data);
                 applyTranslations();
+                populatePresetCategories(presetCategorySelect, presetSelect); // Re-populate presets on lang change
             } catch (error) {
                 console.error(`Could not fetch translations for ${lang}:`, error);
             }
         });
     });
 
-    // Any other generic listeners
     document.getElementById('search-form').addEventListener('input', generateSearchString);
 }
 

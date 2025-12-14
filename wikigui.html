@@ -41,12 +41,18 @@
             </p>
 
             <div class="presets-container">
-                <h3 id="presets-heading">Preset Searches (Space Exploration)</h3>
+                <h3 id="presets-heading"></h3>
                 <p id="presets-description"></p>
-                <div class="preset-buttons">
-                    <button class="preset-button" data-preset-type="easy"></button>
-                    <button class="preset-button" data-preset-type="medium"></button>
-
+                <div class="preset-controls">
+                    <div class="form-group">
+                        <label for="preset-category-select" id="label-preset-category"></label>
+                        <select id="preset-category-select"></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="preset-select" id="label-select-preset"></label>
+                        <select id="preset-select"></select>
+                    </div>
+                    <button type="button" id="apply-preset-button" class="preset-button">Apply Preset</button>
                 </div>
             </div>
 

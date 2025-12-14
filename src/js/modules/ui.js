@@ -2,6 +2,7 @@
 import { getTranslation, getLanguage } from './state.js';
 import { generateSearchString } from './search.js';
 import { performWikipediaSearch, fetchArticleSummary } from './api.js';
+import { presetCategories } from './presets.js';
 
 const wikipediaSearchHelpUrls = {
     'de': 'https://de.wikipedia.org/wiki/Hilfe:Suche',
@@ -14,6 +15,46 @@ const wikipediaSearchHelpUrls = {
     'ru': 'https://ru.wikipedia.org/wiki/Help:Search',
     'pt': 'https://pt.wikipedia.org/wiki/Ajuda:Pesquisa'
 };
+
+export function populatePresetCategories(categorySelectElement) {
+    categorySelectElement.innerHTML = `<option value="">${getTranslation('placeholder-preset-category')}</option>`;
+    for (const key in presetCategories) {
+        const option = document.createElement('option');
+        option.value = key;
+        option.textContent = presetCategories[key][`name_${getLanguage()}`] || presetCategories[key].name_en;
+        categorySelectElement.appendChild(option);
+    }
+}
+
+export function populatePresets(categorySelectElement, presetSelectElement) {
+    presetSelectElement.innerHTML = `<option value="">${getTranslation('placeholder-select-preset')}</option>`;
+    const selectedCategoryKey = categorySelectElement.value;
+    if (selectedCategoryKey && presetCategories[selectedCategoryKey]) {
+        const categoryPresets = presetCategories[selectedCategoryKey].presets;
+        for (const key in categoryPresets) {
+            const option = document.createElement('option');
+            option.value = key;
+            option.textContent = getTranslation(key); // Translate preset name
+            presetSelectElement.appendChild(option);
+        }
+    }
+}
+
+export function applyPreset(preset) {
+    clearForm(); // Clear all form fields first
+
+    for (const key in preset) {
+        const element = document.getElementById(key);
+        if (element) {
+            if (element.type === 'checkbox') {
+                element.checked = preset[key];
+            } else {
+                element.value = getTranslation(preset[key], preset[key]);
+            }
+        }
+    }
+    generateSearchString();
+}
 
 export function applyTranslations() {
     const lang = getLanguage();
@@ -31,13 +72,13 @@ export function applyTranslations() {
         }
     });
 
-    document.querySelectorAll('.preset-button').forEach(button => {
-        const presetKey = `preset-${button.dataset.presetType}`;
-        const translation = getTranslation(presetKey);
-        if (translation) {
-            button.textContent = translation;
-        }
-    });
+    // Translate preset category and preset select labels
+    const presetCategorySelect = document.getElementById('preset-category-select');
+    const presetSelect = document.getElementById('preset-select');
+    if (presetCategorySelect && presetSelect) {
+        populatePresetCategories(presetCategorySelect);
+        populatePresets(presetCategorySelect, presetSelect); // Re-populate based on current selection
+    }
 
     const officialDocLink = document.getElementById('official-doc-link');
     if (officialDocLink) {
@@ -50,7 +91,7 @@ export function applyTranslations() {
     }
     
     // Update footer links
-    const footerLinkIds = ['link-license-agreement', 'link-terms-of-use', 'link-non-commercial-use', 'link-faq'];
+    const footerLinkIds = ['link-license-agreement', 'link-terms-of-use', 'link-non-commercial-use', 'link-faq', 'link-report-issue'];
     footerLinkIds.forEach(id => {
         const link = document.getElementById(id);
         if (link) {
@@ -62,73 +103,4 @@ export function applyTranslations() {
             }
         }
     });
-}
-
-export function clearForm() {
-    const form = document.getElementById('search-form');
-    if (form) {
-        form.reset();
-        document.querySelectorAll('#filetype-options input').forEach(cb => cb.checked = false);
-    }
-    generateSearchString();
-}
-
-export async function handleSearchFormSubmit(event) {
-    event.preventDefault();
-    const query = generateSearchString();
-    const lang = document.getElementById('target-wiki-lang').value;
-    const resultsContainer = document.getElementById('simulated-search-results');
-    const searchResultsHeading = document.getElementById('search-results-heading');
-    
-    if (!query) return;
-
-    resultsContainer.innerHTML = `<li><div class="loading-indicator">${getTranslation('loading-indicator')}</div></li>`;
-    
-    const apiResponse = await performWikipediaSearch(query, lang);
-    const results = apiResponse?.query?.search || [];
-    const totalHits = apiResponse?.query?.searchinfo?.totalhits || 0;
-
-    // Update the results heading with the total number of hits
-    if (searchResultsHeading) {
-        searchResultsHeading.textContent = getTranslation('search-results-heading', '', { totalResults: totalHits });
-    }
-
-    resultsContainer.innerHTML = '';
-
-    if (results.length === 0) {
-        resultsContainer.innerHTML = `<li>${getTranslation('no-results-found')}</li>`;
-        return;
-    }
-
-    for (const result of results) {
-        const summary = await fetchArticleSummary(result.title, lang);
-        const listItem = document.createElement('li');
-        listItem.innerHTML = `
-            <a href="https://${lang}.wikipedia.org/wiki/${encodeURIComponent(result.title)}" target="_blank">
-                <strong>${result.title}</strong>
-            </a>
-            <p>${summary}</p>
-        `;
-        resultsContainer.appendChild(listItem);
-    }
-}
-
-export function addAccordionFunctionality() {
-    document.querySelectorAll('.accordion-header').forEach(header => {
-        header.addEventListener('click', () => {
-            const content = header.nextElementSibling;
-            header.classList.toggle('active');
-            if (content.style.display === 'block') {
-                content.style.display = 'none';
-            } else {
-                content.style.display = 'block';
-            }
-        });
-    });
-    // Open the first accordion by default
-    const firstAccordion = document.getElementById('heading-main-query');
-    if(firstAccordion) {
-        firstAccordion.classList.add('active');
-        firstAccordion.nextElementSibling.style.display = 'block';
-    }
 }
