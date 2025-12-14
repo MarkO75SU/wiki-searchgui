@@ -35,20 +35,12 @@ export function generateSearchString() {
             }
         }
         
-        // Temporary diagnostic: If incategory is present, do not add intitle to the query string
-        const incategoryValue = getValue('incategory-value');
-        if (optionIntitle && !incategoryValue) {
+        if (optionIntitle) {
             queryParts.push(`intitle:${mainQueryTerm}`);
             explanationParts.push(getTranslation('explanation-intitle', '', { mainQuery }));
-        } else if (!optionIntitle) {
+        } else {
             queryParts.push(mainQueryTerm);
             explanationParts.push(getTranslation('explanation-main-query', '', { mainQuery }));
-        } else if (optionIntitle && incategoryValue) {
-             // If incategory is present and intitle is selected, we still want the mainQueryTerm in the srsearch
-             // but without the 'intitle:' prefix for this diagnostic.
-             queryParts.push(mainQueryTerm);
-             explanationParts.push(getTranslation('explanation-main-query', '', { mainQuery }));
-             // No intitle explanation if intitle is ignored for diagnostic
         }
     }
 
