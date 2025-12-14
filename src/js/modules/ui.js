@@ -49,7 +49,11 @@ export function applyPreset(preset) {
             if (element.type === 'checkbox') {
                 element.checked = preset[key];
             } else {
-                element.value = getTranslation(preset[key], preset[key]);
+                // If the preset[key] is a translation key (e.g., 'preset-easy-search-query'), get its translated value.
+                // Otherwise, it's a direct value (like true/false for checkboxes or a number for filesize), use it as is.
+                element.value = typeof preset[key] === 'string' && preset[key].startsWith('preset-') 
+                                ? getTranslation(preset[key], preset[key]) 
+                                : preset[key];
             }
         }
     }

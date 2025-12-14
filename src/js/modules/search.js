@@ -72,8 +72,6 @@ export function generateSearchString() {
         incategory: getValue('incategory-value'),
         deepcat: getValue('deepcat-value'),
         linksto: getValue('linkfrom-value'),
-        dateafter: getValue('dateafter-value'), // New date field
-        datebefore: getValue('datebefore-value'), // New date field
         prefix: getValue('prefix-value'),
         insource: getValue('insource-value'),
         hastemplate: getValue('hastemplate-value')
@@ -81,18 +79,9 @@ export function generateSearchString() {
 
     Object.entries(params).forEach(([key, value]) => {
         if (value) {
-            // Special handling for date fields
-            if (key === 'dateafter') {
-                queryParts.push(`after:${value}`);
-                explanationParts.push(getTranslation('explanation-dateafter', '', { dateafter: value }));
-            } else if (key === 'datebefore') {
-                queryParts.push(`before:${value}`);
-                explanationParts.push(getTranslation('explanation-datebefore', '', { datebefore: value }));
-            } else {
-                queryParts.push(`${key}:"${value}"`);
-                const explanationKey = `explanation-${key}`;
-                explanationParts.push(getTranslation(explanationKey, '', { [key]: value }));
-            }
+            queryParts.push(`${key}:"${value}"`);
+            const explanationKey = `explanation-${key}`;
+            explanationParts.push(getTranslation(explanationKey, '', { [key]: value }));
         }
     });
 
@@ -115,6 +104,18 @@ export function generateSearchString() {
         explanationParts.push(getTranslation('explanation-filesize-max', '', { fileSizeMax }));
     }
 
+    const dateafter = getValue('dateafter-value');
+    if (dateafter) {
+        queryParts.push(`after:${dateafter}`);
+        explanationParts.push(getTranslation('explanation-dateafter', '', { dateafter: dateafter }));
+    }
+
+    const datebefore = getValue('datebefore-value');
+    if (datebefore) {
+        queryParts.push(`before:${datebefore}`);
+        explanationParts.push(getTranslation('explanation-datebefore', '', { datebefore: datebefore }));
+    }
+
     // Update the UI with the generated string and explanation
     const displayElement = document.getElementById('generated-search-string-display');
     if (displayElement) {
@@ -131,4 +132,3 @@ export function generateSearchString() {
     }
 
     return queryParts.join(' ').trim();
-}
