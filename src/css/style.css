@@ -339,6 +339,7 @@ select {
     margin-bottom: 0;
 }
 
+/* Styling for Preset Searches section */
 .presets-container {
     margin-top: 30px;
     padding: 20px;
@@ -347,37 +348,68 @@ select {
     background-color: var(--background-light);
 }
 
+.presets-container h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+}
+
+.preset-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px; /* Space between controls */
+    margin-top: 15px;
+    align-items: flex-end; /* Align items to the bottom */
+}
+
+.preset-controls .form-group {
+    flex-grow: 1; /* Allow dropdowns to grow */
+    min-width: 150px; /* Ensure a minimum width */
+}
+
 .preset-button {
     background-color: var(--primary-color);
-    color: var(--text-light);
+    color: var(--text-light); /* Ensure white text */
     border: none;
-    padding: 10px 18px;
-    margin-right: 10px; /* Reinstated for spacing */
+    padding: 12px 20px; /* Increased padding */
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
     white-space: normal; /* Allow text to wrap */
     text-align: center; /* Center text within the button */
+    height: auto; /* Allow vertical expansion */
+    font-size: 1.1rem; /* Explicit font size */
+    margin-right: 0; /* Remove conflicting margin */
+    min-width: unset; /* Allow content-based sizing */
+    flex-grow: unset; /* Allow content-based sizing */
 }
 
 .preset-button:hover {
     background-color: #0056b3;
 }
 
-#generate-search-string-button {
-    display: block;
-    width: 100%;
-    background-color: var(--success-color);
-    color: var(--text-light);
-    border: none;
+/* Styling for main action buttons (Generate Search, Clear Form) */
+.main-action-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically by default */
+    gap: 10px; /* Space between buttons */
+    margin-top: 30px;
+}
+
+.main-action-buttons button {
+    width: 100%; /* Full width within the container */
     padding: 15px 20px;
     border-radius: 5px;
     font-size: 1.1rem;
     font-weight: bold;
     cursor: pointer;
-    margin-top: 30px;
+    border: none;
     transition: background-color 0.3s ease;
+}
+
+#generate-search-string-button {
+    background-color: var(--success-color);
+    color: var(--text-light);
 }
 
 #generate-search-string-button:hover {
@@ -385,18 +417,8 @@ select {
 }
 
 #clear-form-button {
-    display: block;
-    width: 100%;
     background-color: var(--secondary-color);
     color: var(--text-light);
-    border: none;
-    padding: 15px 20px;
-    border-radius: 5px;
-    font-size: 1.1rem;
-    font-weight: bold;
-    cursor: pointer;
-    margin-top: 10px; /* Space from the generate button */
-    transition: background-color 0.3s ease;
 }
 
 #clear-form-button:hover {
@@ -579,7 +601,7 @@ select {
     margin-bottom: 20px;
 }
 
-/* Styling for Preset Searches section */
+/* Existing .presets-container styling */
 .presets-container {
     margin-top: 30px;
     padding: 20px;
@@ -593,34 +615,78 @@ select {
     color: var(--primary-color);
 }
 
-.preset-buttons {
+/* Adjust .preset-controls and .preset-button for proper layout */
+.preset-controls {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px; /* Increased gap for more spacing */
+    gap: 15px; /* Space between controls */
     margin-top: 15px;
-    justify-content: center; /* Center buttons horizontally */
+    align-items: flex-end; /* Align items to the bottom */
+}
+
+.preset-controls .form-group {
+    flex-grow: 1; /* Allow dropdowns to grow */
+    min-width: 150px; /* Ensure a minimum width */
 }
 
 .preset-button {
     background-color: var(--primary-color);
-    color: var(--text-light); /* Ensure white text */
+    color: var(--text-light);
     border: none;
-    padding: 12px 20px; /* Increased padding */
+    padding: 12px 20px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s ease;
-    white-space: normal; /* Allow text to wrap */
-    text-align: center; /* Center text within the button */
-    height: auto; /* Allow vertical expansion */
-    font-size: 1.1rem; /* Explicit font size */
-    margin-right: 0; /* Managed by parent gap */
-    min-width: unset; /* Allow content-based sizing */
-    flex-grow: unset; /* Allow content-based sizing */
+    white-space: normal;
+    text-align: center;
+    height: auto;
+    font-size: 1.1rem;
+    margin-right: 0; /* REMOVED conflicting margin */
+    min-width: unset;
+    flex-grow: unset;
 }
 
 .preset-button:hover {
     background-color: #0056b3;
+}
+
+
+/* Styling for main action buttons (Generate Search, Clear Form) */
+.main-action-buttons {
+    display: flex;
+    flex-direction: column; /* Stack buttons vertically by default */
+    gap: 10px; /* Space between buttons */
+    margin-top: 30px;
+}
+
+.main-action-buttons button {
+    width: 100%; /* Full width within the container */
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease;
+}
+
+#generate-search-string-button {
+    background-color: var(--success-color);
+    color: var(--text-light);
+}
+
+#generate-search-string-button:hover {
+    background-color: #218838;
+}
+
+#clear-form-button {
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+}
+
+#clear-form-button:hover {
+    background-color: #5a6268;
 }
 
 /* Styling for Saved Searches section */
@@ -941,4 +1007,3 @@ footer nav a:hover {
     margin-left: 10px; /* Space from the toggle label */
     flex-shrink: 0;
 }
-
