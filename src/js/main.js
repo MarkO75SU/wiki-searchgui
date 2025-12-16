@@ -147,6 +147,26 @@ async function initializeApp() {
     if (dateafterInput) { dateafterInput.addEventListener('change', generateSearchString); }
     const datebeforeInput = document.getElementById('datebefore-value');
     if (datebeforeInput) { datebeforeInput.addEventListener('change', generateSearchString); }
+
+    const copyIcon = document.querySelector('.copy-icon');
+    const generatedSearchStringDisplay = document.getElementById('generated-search-string-display');
+
+    if (copyIcon && generatedSearchStringDisplay) {
+        copyIcon.addEventListener('click', async () => {
+            const textToCopy = generatedSearchStringDisplay.textContent;
+            try {
+                await navigator.clipboard.writeText(textToCopy);
+                const originalIcon = copyIcon.textContent;
+                copyIcon.textContent = '✅'; // Change to checkmark
+                setTimeout(() => {
+                    copyIcon.textContent = originalIcon; // Revert after a short delay
+                }, 1500);
+            } catch (err) {
+                console.error('Failed to copy text: ', err);
+                // Optionally provide user feedback for failure
+            }
+        });
+    }
 }
 
 document.addEventListener('DOMContentLoaded', initializeApp);
