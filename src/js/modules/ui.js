@@ -102,12 +102,73 @@ export function applyTranslations() {
         searchQueryInput.placeholder = getTranslation('search-query-placeholder');
     }
 
+    const exactPhraseInput = document.getElementById('exact-phrase');
+    if (exactPhraseInput) {
+        exactPhraseInput.placeholder = getTranslation('exact-phrase-placeholder');
+    }
+
+    const withoutWordsInput = document.getElementById('without-words');
+    if (withoutWordsInput) {
+        withoutWordsInput.placeholder = getTranslation('without-words-placeholder');
+    }
+
+    const anyWordsInput = document.getElementById('any-words');
+    if (anyWordsInput) {
+        anyWordsInput.placeholder = getTranslation('any-words-placeholder');
+    }
+
+    const prefixValueInput = document.getElementById('prefix-value');
+    if (prefixValueInput) {
+        prefixValueInput.placeholder = getTranslation('prefix-placeholder');
+    }
+
+    const incategoryValueInput = document.getElementById('incategory-value');
+    if (incategoryValueInput) {
+        incategoryValueInput.placeholder = getTranslation('incategory-placeholder');
+    }
+
+    const deepcatValueInput = document.getElementById('deepcat-value');
+    if (deepcatValueInput) {
+        deepcatValueInput.placeholder = getTranslation('deepcat-placeholder');
+    }
+
+    const linkfromValueInput = document.getElementById('linkfrom-value');
+    if (linkfromValueInput) {
+        linkfromValueInput.placeholder = getTranslation('linkfrom-placeholder');
+    }
+
+    const hastemplateValueInput = document.getElementById('hastemplate-value');
+    if (hastemplateValueInput) {
+        hastemplateValueInput.placeholder = getTranslation('hastemplate-placeholder');
+    }
+
+    const filesizeMinInput = document.getElementById('filesize-min');
+    if (filesizeMinInput) {
+        filesizeMinInput.placeholder = getTranslation('filesize-min-placeholder');
+    }
+
+    const filesizeMaxInput = document.getElementById('filesize-max');
+    if (filesizeMaxInput) {
+        filesizeMaxInput.placeholder = getTranslation('filesize-max-placeholder');
+    }
+
+    const insourceValueInput = document.getElementById('insource-value');
+    if (insourceValueInput) {
+        insourceValueInput.placeholder = getTranslation('insource-placeholder');
+    }
+    
     // Translate preset category and preset select labels
     const presetCategorySelect = document.getElementById('preset-category-select');
     const presetSelect = document.getElementById('preset-select');
     if (presetCategorySelect && presetSelect) {
         populatePresetCategories(presetCategorySelect, presetSelect);
     }
+
+    const categorySelect = document.getElementById('category-select');
+    if (categorySelect) {
+        populateCategoryOptions(categorySelect);
+    }
+
 
     const officialDocLink = document.getElementById('official-doc-link');
     if (officialDocLink) {
@@ -116,7 +177,8 @@ export function applyTranslations() {
 
     const targetLangSelect = document.getElementById('target-wiki-lang');
     if (targetLangSelect) {
-        targetLangSelect.value = lang;
+        populateLanguageOptions(targetLangSelect); // Call the new function
+        // targetLangSelect.value = lang; // This line is now redundant as it's set in populateLanguageOptions
     }
     
     // Update footer links
@@ -202,4 +264,39 @@ export function addAccordionFunctionality() {
         firstAccordion.classList.add('active');
         firstAccordion.nextElementSibling.style.display = 'block';
     }
+}
+
+// New function to populate language options dynamically
+export function populateLanguageOptions(selectElement) {
+    selectElement.innerHTML = ''; // Clear existing options
+    const languages = [
+        'de', 'en', 'fr', 'es', 'zh', 'hi', 'ar', 'ru', 'pt'
+    ];
+
+    languages.forEach(langCode => {
+        const option = document.createElement('option');
+        option.value = langCode;
+        option.textContent = getTranslation(`lang-${langCode}-option`);
+        selectElement.appendChild(option);
+    });
+    selectElement.value = getLanguage(); // Set selected language
+}
+
+// New function to populate category options dynamically
+export function populateCategoryOptions(selectElement) {
+    selectElement.innerHTML = `<option value="">${getTranslation('placeholder-category-dropdown')}</option>`; // Default placeholder
+    const categories = [
+        { value: 'Science', key: 'category-Science' },
+        { value: 'History', key: 'category-History' },
+        { value: 'Art', key: 'category-Art' },
+        { value: 'Technology', key: 'category-Technology' },
+        { value: 'Geography', key: 'category-Geography' }
+    ];
+
+    categories.forEach(cat => {
+        const option = document.createElement('option');
+        option.value = cat.value;
+        option.textContent = getTranslation(cat.key);
+        selectElement.appendChild(option);
+    });
 }

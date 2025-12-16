@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title id="page-title">WikiGUI - Wikipedia Search Helper</title>
+    <title id="page-title"></title>
     <link rel="stylesheet" href="src/css/style.css">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 </head>
 <body>
     <header>
         <div class="container">
-            <h1 id="app-title">WikiGUI</h1>
+            <h1 id="app-title"></h1>
             <!-- Removed Navigation: Home, Search Help, About -->
             <div class="header-links">
                 <span id="github-support-text"></span>
@@ -18,15 +18,15 @@
                 <a href="https://github.com/MarkO75SU/wiki-searchgui/archive/refs/heads/main.zip" class="header-button" id="download-zip-link">Download ZIP</a>
             </div>
             <div class="language-selector">
-                <button id="lang-de" class="lang-button" data-lang="de">Deutsch</button>
-                <button id="lang-en" class="lang-button" data-lang="en">English</button>
+                <button id="lang-de" class="lang-button" data-lang="de"></button>
+                <button id="lang-en" class="lang-button" data-lang="en"></button>
             </div>
         </div>
     </header>
 
     <main class="container">
         <section class="search-interface">
-            <h2 id="main-heading">Wikipedia Search Helper</h2>
+            <h2 id="main-heading"></h2>
             <div class="mode-toggle-container">
                 <label class="switch">
                     <input type="checkbox" id="advanced-mode-toggle">
@@ -36,7 +36,7 @@
                 <span id="advanced-mode-description"></span>
             </div>
             <p id="intro-text">
-                <a href="https://de.wikipedia.org/wiki/Hilfe:Suche" target="_blank" id="official-doc-link">Offizielle Wikipedia Suchdokumentation</a>
+                <a href="https://de.wikipedia.org/wiki/Hilfe:Suche" target="_blank" id="official-doc-link"></a>
                 <br>
 
             </p>
@@ -60,23 +60,15 @@
             <div class="search-form-container">
                 <form id="search-form">
                     <div class="form-group">
-                        <label for="target-wiki-lang" id="label-target-wiki-lang">Target Wiki Language:</label>
+                        <label for="target-wiki-lang" id="label-target-wiki-lang"></label>
                         <select id="target-wiki-lang">
-                            <option value="de" selected>Deutsch (de)</option>
-                            <option value="en">English (en)</option>
-                            <option value="fr">Français (fr)</option>
-                            <option value="es">Español (es)</option>
-                            <option value="zh">Chinesisch (zh)</option>
-                            <option value="hi">Hindi (hi)</option>
-                            <option value="ar">Arabisch (ar)</option>
-                            <option value="ru">Russisch (ru)</option>
-                            <option value="pt">Portugiesisch (pt)</option>
+                            <!-- Options will be dynamically populated -->
                         </select>
                     </div>
 
                                         <div class="search-group" id="group-main-query">
 
-                                            <h3 class="accordion-header" id="heading-main-query">Main Search Query: <span class="info-icon" data-info-id="info-main-query" title="Define your primary keywords. Combine terms with 'AND' (default), 'OR', or exclude with '-term'. Use quotes for exact phrases. Example: 'apple OR orange -fruit'">?</span><span class="accordion-arrow">
+                                            <h3 class="accordion-header" id="heading-main-query"> <span class="info-icon" data-info-id="info-main-query" title="Define your primary keywords. Combine terms with 'AND' (default), 'OR', or exclude with '-term'. Use quotes for exact phrases. Example: 'apple OR orange -fruit'">?</span><span class="accordion-arrow">
 
                                             </h3>
 
@@ -86,20 +78,20 @@
                     <input type="text" id="search-query">
                 </div>
                 <div class="form-group">
-                    <label for="exact-phrase" id="label-exact-phrase">Exakte Phrase:</label>
-                    <input type="text" id="exact-phrase" placeholder="z. B. \"Forschung zu künstlicher Intelligenz\"">
+                    <label for="exact-phrase" id="label-exact-phrase"></label>
+                    <input type="text" id="exact-phrase">
                 </div>
                 <div class="form-group">
                     <label for="without-words" id="label-without-words">Without these words:</label>
-                    <input type="text" id="without-words" placeholder="z. B. Krieg, Konflikt">
+                    <input type="text" id="without-words">
                 </div>
                 <div class="form-group">
                     <label for="any-words" id="label-any-words">At least one of these words (OR):</label>
-                    <input type="text" id="any-words" placeholder="z. B. Mars ODER Venus">
+                    <input type="text" id="any-words">
                 </div>
                 <div class="option-group">
                     <input type="checkbox" id="option-wildcard">
-                    <label for="option-wildcard" id="label-option-wildcard">Enable Wildcard Search (e.g., Köl*)</label>
+                    <label for="option-wildcard" id="label-option-wildcard"></label>
                 </div>
                 <div class="option-group">
                     <input type="checkbox" id="option-fuzzy">
@@ -125,30 +117,25 @@
                     <label for="option-intitle" id="label-intitle">Search in Title (Main Search Query)</label>
                 </div>
                 <div class="form-group">
-                    <label for="prefix-value" id="label-prefix-value">Starts with Title:</label>
-                    <input type="text" id="prefix-value" placeholder="z. B. Wissenschaft:, Geschichte von">
+                    <label for="prefix-value" id="label-prefix-value"></label>
+                    <input type="text" id="prefix-value">
                 </div>
                 <div class="form-group">
-                    <label for="incategory-value" id="label-incategory">In Category:</label>
-                    <input type="text" id="incategory-value" placeholder="z. B. Physik, Antikes Rom">
+                    <label for="incategory-value" id="label-incategory"></label>
+                    <input type="text" id="incategory-value">
                 </div>
                 <div class="form-group">
-                    <label for="deepcat-value" id="label-deepcat">Deep Category:</label>
-                    <input type="text" id="deepcat-value" placeholder="z. B. Biologie, Literatur">
+                    <label for="deepcat-value" id="label-deepcat"></label>
+                    <input type="text" id="deepcat-value">
                 </div>
                 <div class="form-group">
-                    <label for="linkfrom-value" id="label-linkfrom">Linked from:</label>
-                    <input type="text" id="linkfrom-value" placeholder="z. B. Albert Einstein, Quantenphysik">
+                    <label for="linkfrom-value" id="label-linkfrom"></label>
+                    <input type="text" id="linkfrom-value">
                 </div>
                 <div class="form-group">
                     <label for="category-select" id="label-category-dropdown">Category:</label>
                     <select id="category-select">
-                        <option value="">Select a category</option>
-                        <option value="Science">Science</option>
-                        <option value="History">History</option>
-                        <option value="Art">Art</option>
-                        <option value="Technology">Technology</option>
-                        <option value="Geography">Geography</option>
+                        <!-- Options will be dynamically populated -->
                     </select>
                 </div>
                 <div class="form-group">
@@ -156,51 +143,51 @@
                     <div id="namespaces-options">
                         <div class="option-group">
                             <input type="checkbox" id="ns-main" value="0">
-                            <label for="ns-main" id="label-ns-main">Artikel</label>
+                            <label for="ns-main" id="label-ns-main"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-user" value="2">
-                            <label for="ns-user" id="label-ns-user">Benutzer</label>
+                            <label for="ns-user" id="label-ns-user"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-user-talk" value="3">
-                            <label for="ns-user-talk">Benutzer Diskussion</label>
+                            <label for="ns-user-talk" id="label-ns-user-talk"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-file" value="6">
-                            <label for="ns-file" id="label-ns-file">Datei</label>
+                            <label for="ns-file" id="label-ns-file"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-file-talk" value="7">
-                            <label for="ns-file-talk">Datei Diskussion</label>
+                            <label for="ns-file-talk" id="label-ns-file-talk"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-help" value="12">
-                            <label for="ns-help" id="label-ns-help">Hilfe</label>
+                            <label for="ns-help" id="label-ns-help"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-help-talk" value="13">
-                            <label for="ns-help-talk">Hilfe Diskussion</label>
+                            <label for="ns-help-talk" id="label-ns-help-talk"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-category" value="14">
-                            <label for="ns-category" id="label-ns-category">Kategorie</label>
+                            <label for="ns-category" id="label-ns-category"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-category-talk" value="15">
-                            <label for="ns-category-talk">Kategorie Diskussion</label>
+                            <label for="ns-category-talk" id="label-ns-category-talk"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-portal" value="100">
-                            <label for="ns-portal">Portal</label>
+                            <label for="ns-portal" id="label-ns-portal"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-template" value="10">
-                            <label for="ns-template" id="label-ns-template">Vorlage</label>
+                            <label for="ns-template" id="label-ns-template"></label>
                         </div>
                         <div class="option-group">
                             <input type="checkbox" id="ns-template-talk" value="11">
-                            <label for="ns-template-talk">Vorlage Diskussion</label>
+                            <label for="ns-template-talk" id="label-ns-template-talk"></label>
                         </div>
                     </div>
                 </div>
@@ -217,7 +204,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="hastemplate-value" id="label-hastemplate">Uses Template:</label>
-                                <input type="text" id="hastemplate-value" placeholder="z. B. Infobox Wissenschaftler, Zitat benötigt">
+                                <input type="text" id="hastemplate-value">
                             </div>
                             <div class="form-group">
                                 <label id="label-filetype">File Type:</label>
@@ -259,8 +246,8 @@
                             <div class="form-group">
                                 <label for="filesize-min" id="label-filesize">File Size (bytes):</label>
                                 <div class="file-size-inputs">
-                                    <input type="number" id="filesize-min" placeholder="Min" min="0">
-                                    <input type="number" id="filesize-max" placeholder="Max" min="0">
+                                    <input type="number" id="filesize-min">
+                                    <input type="number" id="filesize-max">
                                 </div>
                             </div>
                         </div>
@@ -282,35 +269,35 @@
                     </div> <!-- End Date Filters Group -->
 
 
-                    <button type="submit" id="generate-search-string-button">Generate Search String & Preview</button>
-                    <button type="button" id="clear-form-button">Clear Form</button>
+                    <button type="submit" id="generate-search-string-button"></button>
+                    <button type="button" id="clear-form-button"></button>
                 </form>
             </div>
 
             <div class="search-output">
-                <h3 id="generated-string-heading">Generated Search String:</h3>
+                <h3 id="generated-string-heading"></h3>
                 <div class="generated-string-wrapper">
                     <input type="text" id="generated-search-string-display" readonly>
                 </div>
                 <div id="generated-string-explanation" class="search-string-explanation"></div>
                 <a href="#" id="open-in-wikipedia-link" target="_blank" class="wikipedia-link" style="display: none;"></a>
 
-                <h3 id="search-results-heading">Search Results (First 10):</h3>
+                <h3 id="search-results-heading"></h3>
                 <ul id="simulated-search-results">
                     <!-- Simulated results will be inserted here -->
-                    <li><div class="loading-indicator" style="display: none;">Loading results...</div></li>
+                    <li><div class="loading-indicator" style="display: none;"></div></li>
                 </ul>
             </div>
 
             <div class="saved-searches-container">
-                <h3 id="saved-searches-heading">Saved Searches</h3>
+                <h3 id="saved-searches-heading"></h3>
                 <div class="save-search-input-group">
-                    <input type="text" id="save-search-comment" placeholder="">
-                    <button id="save-search-button">Save Current Search</button>
+                    <input type="text" id="save-search-comment">
+                    <button id="save-search-button"></button>
                 </div>
                 <div class="import-export-group">
-                    <button id="export-json-button" class="export-button">Export as JSON</button>
-                    <button id="export-csv-button" class="export-button">Export as CSV</button>
+                    <button id="export-json-button" class="export-button"></button>
+                    <button id="export-csv-button" class="export-button"></button>
                     <label for="import-file-input" class="import-label">Import Searches</label>
                     <input type="file" id="import-file-input" accept=".json,.csv" style="display: none;">
                 </div>
