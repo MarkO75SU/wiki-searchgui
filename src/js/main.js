@@ -104,45 +104,7 @@ async function initializeApp() {
     // End New Preset Logic
 
     const searchForm = document.getElementById('search-form');
-    if (searchForm) { searchForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const { apiQuery } = generateSearchString(); // Destructure apiQuery
-        const lang = document.getElementById('target-wiki-lang').value;
-        const resultsContainer = document.getElementById('simulated-search-results');
-        const searchResultsHeading = document.getElementById('search-results-heading');
-        
-        if (!apiQuery) return; // Use apiQuery for validation
-
-        resultsContainer.innerHTML = `<li><div class="loading-indicator">${getTranslation('loading-indicator')}</div></li>`;
-        
-        const apiResponse = await performWikipediaSearch(apiQuery, lang); // Pass apiQuery
-        const results = apiResponse?.query?.search || [];
-        const totalHits = apiResponse?.query?.searchinfo?.totalhits || 0;
-
-        // Update the results heading with the total number of hits
-        if (searchResultsHeading) {
-            searchResultsHeading.textContent = getTranslation('search-results-heading', '', { totalResults: totalHits });
-        }
-
-        resultsContainer.innerHTML = '';
-
-        if (results.length === 0) {
-            resultsContainer.innerHTML = `<li>${getTranslation('no-results-found')}</li>`;
-            return;
-        }
-
-        for (const result of results) {
-            const summary = await fetchArticleSummary(result.title, lang);
-            const listItem = document.createElement('li');
-            listItem.innerHTML = `
-                <a href="https://${lang}.wikipedia.org/wiki/${encodeURIComponent(result.title)}" target="_blank">
-                    <strong>${result.title}</strong>
-                </a>
-                <p>${summary}</p>
-            `;
-            resultsContainer.appendChild(listItem);
-        }
-    }); }
+    if (searchForm) { searchForm.addEventListener('submit', handleSearchFormSubmit); }
     const clearFormBtn = document.getElementById('clear-form-button');
     if (clearFormBtn) { clearFormBtn.addEventListener('click', () => {
         clearForm();
