@@ -10,18 +10,16 @@ async function initializeApp() {
     document.documentElement.lang = initialLang;
 
     addAccordionFunctionality();
-    generateSearchString();
     loadSavedSearches();
 
     // Advanced mode toggle
     const advancedToggle = document.getElementById('advanced-mode-toggle');
     const searchFormContainer = document.querySelector('.search-form-container');
-    const advancedModeDescription = document.getElementById('advanced-mode-description'); // Get the new description span
+    const advancedModeDescription = document.getElementById('advanced-mode-description');
 
     function updateAdvancedModeDescription() {
         if (!advancedToggle || !advancedModeDescription) return;
 
-        // Update the label-advanced-mode as well, as its text content might need to change
         const labelAdvancedMode = document.getElementById('label-advanced-mode');
         if (labelAdvancedMode) {
              labelAdvancedMode.textContent = getTranslation('label-advanced-mode');
@@ -34,44 +32,27 @@ async function initializeApp() {
         }
     }
 
-
-    if (advancedToggle && searchFormContainer) { // Null check
+    if (advancedToggle && searchFormContainer && advancedModeDescription) {
         advancedToggle.addEventListener('change', () => {
             if (advancedToggle.checked) {
                 searchFormContainer.classList.add('advanced-view');
             } else {
                 searchFormContainer.classList.remove('advanced-view');
             }
-            updateAdvancedModeDescription(); // Call after state changes
+            updateAdvancedModeDescription();
         });
-        updateAdvancedModeDescription(); // Call once on initialization
+        updateAdvancedModeDescription(); // Initial call
     }
-
 
     // New Preset Logic Setup
     const presetCategorySelect = document.getElementById('preset-category-select');
     const presetSelect = document.getElementById('preset-select');
     const applyPresetButton = document.getElementById('apply-preset-button');
 
-    if (presetCategorySelect && presetSelect && applyPresetButton) { // Null check for preset elements
-        applyPresetButton.disabled = true; // Disable apply button initially
-
-        populatePresetCategories(presetCategorySelect, presetSelect);
-
-        // Select the first category by default if available
-        if (presetCategorySelect.options.length > 1) {
-            presetCategorySelect.selectedIndex = 1; // Select the first actual category
-            populatePresets(presetCategorySelect, presetSelect); // Populate presets for the selected category
-        }
-        // Select the first preset by default if available and enable button
-        if (presetSelect.options.length > 1) {
-            presetSelect.selectedIndex = 1; // Select the first actual preset
-            applyPresetButton.disabled = false;
-        }
-
+    if (presetCategorySelect && presetSelect && applyPresetButton) {
+        // Initial population and event listeners for presets
         presetCategorySelect.addEventListener('change', () => {
             populatePresets(presetCategorySelect, presetSelect);
-            // After populating, select the first preset if available
             if (presetSelect.options.length > 1) {
                 presetSelect.selectedIndex = 1;
                 applyPresetButton.disabled = false;
@@ -96,28 +77,28 @@ async function initializeApp() {
             const presetToApply = presetCategories[selectedCategory]?.presets[selectedPreset];
             if (selectedCategory && selectedPreset && presetToApply) {
                 applyPresetToForm(presetToApply);
-            } else {
-                // console.warn("Invalid preset selection or preset not found."); // Removed
             }
         });
     }
-    // End New Preset Logic
 
+    // Event listeners for main form elements
     const searchForm = document.getElementById('search-form');
     if (searchForm) { searchForm.addEventListener('submit', handleSearchFormSubmit); }
+    
     const clearFormBtn = document.getElementById('clear-form-button');
     if (clearFormBtn) { clearFormBtn.addEventListener('click', () => {
         clearForm();
-        generateSearchString(); // Call generateSearchString directly to update UI
+        generateSearchString();
     }); }
+
     const saveSearchBtn = document.getElementById('save-search-button');
     if (saveSearchBtn) { saveSearchBtn.addEventListener('click', () => {
-        const { apiQuery } = generateSearchString(); // Get apiQuery for saving
-        saveCurrentSearch(apiQuery); // Pass apiQuery
+        const { apiQuery } = generateSearchString();
+        saveCurrentSearch(apiQuery);
     }); }
+
     const savedSearchesList = document.getElementById('saved-searches-list');
     if (savedSearchesList) { savedSearchesList.addEventListener('click', handleSavedSearchActions); }
-
 
     document.querySelectorAll('.lang-button').forEach(button => {
         button.addEventListener('click', async (event) => {
@@ -128,26 +109,33 @@ async function initializeApp() {
                 const data = await response.json();
                 setTranslations(lang, data);
                 applyTranslations();
-                if (presetCategorySelect && presetSelect) { // Re-populate presets on lang change
+                // Ensure presets are populated AFTER new language is set and translations applied
+                if (presetCategorySelect && presetSelect) {
                     populatePresetCategories(presetCategorySelect, presetSelect);
+                    if (presetCategorySelect.options.length > 1) {
+                        presetCategorySelect.selectedIndex = 1;
+                        populatePresets(presetCategorySelect, presetSelect);
+                        applyPresetButton.disabled = false;
+                    } else {
+                        applyPresetButton.disabled = true;
+                    }
                 }
                 updateAdvancedModeDescription(); // Update description on language change
+                generateSearchString(); // Update generated string for new language context
             } catch (error) {
                 console.error(`Could not fetch translations for ${lang}:`, error);
             }
         });
     });
 
-    if (searchForm) { searchForm.addEventListener('input', generateSearchString); } // Call generateSearchString directly
-
+    if (searchForm) { searchForm.addEventListener('input', generateSearchString); }
     const dateafterInput = document.getElementById('dateafter-value');
-    if (dateafterInput) { dateafterInput.addEventListener('change', generateSearchString); } // Call generateSearchString directly
+    if (dateafterInput) { dateafterInput.addEventListener('change', generateSearchString); }
     const datebeforeInput = document.getElementById('datebefore-value');
-    if (datebeforeInput) { datebeforeInput.addEventListener('change', generateSearchString); } // Call generateSearchString directly
-
+    if (datebeforeInput) { datebeforeInput.addEventListener('change', generateSearchString); }
     const targetLangSelectForCopy = document.getElementById('target-wiki-lang');
     if(targetLangSelectForCopy) {
-        targetLangSelectForCopy.addEventListener('change', generateSearchString); // Call generateSearchString directly
+        targetLangSelectForCopy.addEventListener('change', generateSearchString);
     }
 
     const copyIcon = document.querySelector('.copy-icon');
@@ -155,21 +143,48 @@ async function initializeApp() {
 
     if (copyIcon && generatedSearchStringDisplay) {
         copyIcon.addEventListener('click', async () => {
-            const textToCopy = generatedSearchStringDisplay.value; // Use .value for input
+            const textToCopy = generatedSearchStringDisplay.value;
             try {
                 await navigator.clipboard.writeText(textToCopy);
                 const originalIcon = copyIcon.textContent;
-                copyIcon.textContent = '✅'; // Change to checkmark
+                copyIcon.textContent = '✅';
                 setTimeout(() => {
-                    copyIcon.textContent = originalIcon; // Revert after a short delay
+                    copyIcon.textContent = originalIcon;
                 }, 1500);
             } catch (err) {
                 console.error('Failed to copy text: ', err);
-                // Optionally provide user feedback for failure
             }
         });
+    }
+
+    // Initial language fetch and UI update
+    try {
+        const response = await fetch(`translations/${initialLang}.json`);
+        const data = await response.json();
+        setTranslations(initialLang, data);
+        applyTranslations(); // Apply initial translations to all elements
+
+        // ONLY after translations are loaded, populate presets and generate initial string
+        if (presetCategorySelect && presetSelect) { // Null check for preset elements
+            populatePresetCategories(presetCategorySelect, presetSelect);
+
+            // Select the first category by default if available
+            if (presetCategorySelect.options.length > 1) {
+                presetCategorySelect.selectedIndex = 1; // Select the first actual category
+                populatePresets(presetCategorySelect, presetSelect); // Populate presets for the selected category
+            }
+            // Select the first preset by default if available and enable button
+            if (presetSelect.options.length > 1) {
+                presetSelect.selectedIndex = 1; // Select the first actual preset
+                applyPresetButton.disabled = false;
+            }
+        }
+        generateSearchString(); // Generate string after everything else is set up
+        updateAdvancedModeDescription(); // Initial call for description
+
+    } catch (error) {
+        console.error(`Could not fetch initial translations for ${initialLang}:`, error);
     }
 }
 
 document.addEventListener('DOMContentLoaded', initializeApp);
-
